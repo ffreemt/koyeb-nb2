@@ -1,0 +1,41 @@
+# Stage 1
+# FROM python:3-slim-buster AS builder
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8 as builder
+
+WORKDIR /koyeb-nb2
+
+RUN python3 -m venv venv
+ENV VIRTUAL_ENV=/koyeb-nb2/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+COPY requirements.txt .
+RUN /koyeb-nb2/venv/bin/python3 -m pip install --upgrade pip && pip install -r requirements.txt
+
+# Stage 2
+# FROM python:3-slim-buster AS runner
+FROM tiangolo/uvicorn-gunicorn-fastapi:python3.8 as runner
+
+WORKDIR /koyeb-nb2
+
+RUN apt-get update \
+&& apt-get install -y supervisor 
+
+
+COPY --from=builder /koyeb-nb2/venv venv
+COPY gocqhttp.conf /etc/supervisor/conf.d
+COPY nonebot.conf /etc/supervisor/conf.d
+COPY . .
+
+ENV VIRTUAL_ENV=/koyeb-nb2/venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+# not necessary?
+ENV APP=koyeb-nb2/bot.py
+
+# RUN sleep 2 && service supervisor start
+# RUN supervisord -c /etc/supervisor/supervisord.conf
+
+# CMD ["python", "-m" , "flask", "run", "--host=0.0.0.0"]
+# CMD ["python3", "bot.py"]
+# CMD ["uvicorn", "--port", "8680", "bot:app"]
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", "-n"]
