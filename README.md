@@ -53,7 +53,7 @@ In `koyeb-nb`
  In `koyeb-nb`, run `pip install -r requirements.text`
 
     2. Run `go-cqhttp`/`nonebot` and make your own plugin
-    *   In `go-cqhttp-940fix5`, run `go-cqhttp`
+    *   In `go-cqhttp-940fix5`, run `go-cqhttp`  
         N.B. For Windows, download and run go-cqhttp.exe
 
     *   In `koyeb-nb`, run `uvicorn --port 8680 bot:app --reload --reload-dir koyeb_nb2`
