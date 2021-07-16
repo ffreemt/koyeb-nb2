@@ -1,5 +1,7 @@
 # koyeb-nb2
-Dockerfile.gocqhttp-nb2 for go-cqhttp-940fix5 and nonebot2
+Nonebot2 up and running with ease
+
+<!--Dockerfile.gocqhttp-nb2 for go-cqhttp-940fix5 and nonebot2-->
 
 ## Setup
 
@@ -49,14 +51,14 @@ In `koyeb-nb`
  For example, in `koyeb` and such serverless services that support docker deployments.
 
 ### **For Testing Plugins Locally 本地开发测试插件**
-      Optionally use a venv, e.g., `python -m venv venv && source venv/bin/activate` in Linux or `python -m venv venv && venv/Scripts/activate` in Windows.
+Optionally use a venv, e.g., `python -m venv venv && source venv/bin/activate` in Linux or `python -m venv venv && venv/Scripts/activate` in Windows.
 
-    1. Install packages
- In `koyeb-nb`, run `pip install -r requirements.text`
+1. Install packages
+In `koyeb-nb`, run `pip install -r requirements.text`
 
-    2. Run `go-cqhttp`/`nonebot` and make your own plugin
-        *   In `go-cqhttp-940fix5`, run `go-cqhttp`
-            N.B. For Windows, download and run go-cqhttp.exe
+2. Run `go-cqhttp`/`nonebot` and make your own plugin
+    *   In `go-cqhttp-940fix5`, run `go-cqhttp`
+        N.B. For Windows, download and run go-cqhttp.exe
 
-        *   In `koyeb-nb`, run `uvicorn --port 8680 bot:app --reload --reload-dir koyeb_nb2`
-        *   In `koyeb_nb2/plugins`, create/edit/save `fancy_plugin.py`
+    *   In `koyeb-nb`, run `uvicorn --port 8680 bot:app --reload --reload-dir koyeb_nb2`
+    *   In `koyeb_nb2/plugins`, create/edit/save `fancy_plugin.py`
