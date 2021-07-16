@@ -3,11 +3,58 @@ Dockerfile.gocqhttp-nb2 for go-cqhttp-940fix5 and nonebot2
 
 ## How to use
 
-1. `cd go-cqhttp-940fix5`, run `go-cqhttp` and ready `config.hjson`/` device.json`
+### Clone/fork this repo
 
-	换到`go-cqhttp-940fix5`目录里。运行`go-cqhttp` 生成config.hjson。填上机器人的qq号和密码。参考config.hjson- 修改reverse_url 及设置端口（8680）。再次运行 `go-cqhttp` 完成验证生成 `device.json`
-2. run `docker build -t koyeb-nb -f Dockerfile.gocqhttp-nb2 .`
-3. run `docker run --rm koyeb-nb`
+E.g.
+```bash
+git clone https://github.com/ffreemt/koyeb-nb2
+```
+
+### Setup
+In `go-cqhttp-940fix5`, run `go-cqhttp` and ready `config.hjson`/` device.json`
+
+换到`go-cqhttp-940fix5`目录里。运行`go-cqhttp` 生成config.hjson。编辑`config.hjson`填上机器人的qq号和密码，参考config.hjson- 修改reverse_url 及设置端口（8680）。再次运行 `go-cqhttp` 完成验证生成 `device.json`
+
+### Docker
+
+In `koyeb-nb`
+
+1.   run
+         ```bash
+        docker build -t koyeb-nb -f Dockerfile.gocqhttp-nb2 .`
+         ```
+2.   run `docker run --rm koyeb-nb`
+
+3.   (Optional) Upload to Docker Hub ([https://hub.docker.com/](https://hub.docker.com/))
+    ```bash
+    docker tag koyeb-nb:latest YOUR-DOCKER-ID/koyeb-nb:latest
+    docker push YOUR-DOCKER-ID/koyeb-nb:latest
+    ```
+4.   Test the bot
+    *  Send a private message to the bot: `/echo hey ya`
+    *  Send a group message to the bot: `@botname /echo sup`
+
+5.  Install more plugins and repeat 1-2.
+
+    For example, `poetry add nonebot-plugin-guess`
+
+    Readily made plugins are available
+    [https://v2.nonebot.dev/store.html](https://v2.nonebot.dev/store.html)
+
+    You can also copy plugin directly to koyeb_nb2/plugins.
 
 ## Where to use
- in `koyeb` and such serverless services that support docker deployments.
+ * in `koyeb` and such serverless services that support docker deployments.
+
+ * **For Testing Plugins Locally 本地开发测试插件**
+      Optionally use a venv, e.g., `python -m venv venv && source venv/bin/activate` in Linux or `python -m venv venv && venv/Scripts/activate` in Windows.
+
+    1. Install packages
+ In `koyeb-nb`, run `pip install -r requirements.text`
+
+    2. Run `go-cqhttp`/`nonebot` and make your own plugin
+    *   In `go-cqhttp-940fix5`, run `go-cqhttp`
+        N.B. For Windows, download and run go-cqhttp.exe
+
+    *   In `koyeb-nb`, run `uvicorn --port 8680 bot:app --reload --reload-dir koyeb_nb2`
+    *   In `koyeb_nb2/plugins`, create/edit/save `fancy_plugin.py`
