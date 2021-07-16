@@ -1,7 +1,7 @@
 # koyeb-nb2
 Dockerfile.gocqhttp-nb2 for go-cqhttp-940fix5 and nonebot2
 
-## How to use
+## Setup
 
 ### Clone/fork this repo
 
@@ -10,12 +10,14 @@ E.g.
 git clone https://github.com/ffreemt/koyeb-nb2
 ```
 
-### Setup
+### Authenticate
 In `go-cqhttp-940fix5`, run `go-cqhttp` and ready `config.hjson`/` device.json`
 
 换到`go-cqhttp-940fix5`目录里。运行`go-cqhttp` 生成config.hjson。编辑`config.hjson`填上机器人的qq号和密码，参考config.hjson- 修改reverse_url 及设置端口（8680）。再次运行 `go-cqhttp` 完成验证生成 `device.json`
 
-### Docker
+## Three ways to use it
+
+### Run it in Docker Locally
 
 In `koyeb-nb`
 
@@ -43,17 +45,17 @@ In `koyeb-nb`
 
     You can also copy plugin directly to koyeb_nb2/plugins.
 
-## Where to use
- * in `koyeb` and such serverless services that support docker deployments.
+### Run it in Docker in Cloud
+ For example, in `koyeb` and such serverless services that support docker deployments.
 
- * **For Testing Plugins Locally 本地开发测试插件**  
+### **For Testing Plugins Locally 本地开发测试插件**
       Optionally use a venv, e.g., `python -m venv venv && source venv/bin/activate` in Linux or `python -m venv venv && venv/Scripts/activate` in Windows.
 
     1. Install packages
  In `koyeb-nb`, run `pip install -r requirements.text`
 
     2. Run `go-cqhttp`/`nonebot` and make your own plugin
-        *   In `go-cqhttp-940fix5`, run `go-cqhttp`  
+        *   In `go-cqhttp-940fix5`, run `go-cqhttp`
             N.B. For Windows, download and run go-cqhttp.exe
 
         *   In `koyeb-nb`, run `uvicorn --port 8680 bot:app --reload --reload-dir koyeb_nb2`
