@@ -20,13 +20,13 @@ In `go-cqhttp-940fix5`, run `go-cqhttp` and ready `config.hjson`/` device.json`
 In `koyeb-nb`
 
 1.   run
-         ```bash
+         ```
         docker build -t koyeb-nb -f Dockerfile.gocqhttp-nb2 .`
          ```
 2.   run `docker run --rm koyeb-nb`
 
 3.   (Optional) Upload to Docker Hub ([https://hub.docker.com/](https://hub.docker.com/))
-    ```bash
+    ```
     docker tag koyeb-nb:latest YOUR-DOCKER-ID/koyeb-nb:latest
     docker push YOUR-DOCKER-ID/koyeb-nb:latest
     ```
@@ -46,7 +46,7 @@ In `koyeb-nb`
 ## Where to use
  * in `koyeb` and such serverless services that support docker deployments.
 
- * **For Testing Plugins Locally 本地开发测试插件**
+ * **For Testing Plugins Locally 本地开发测试插件**  
       Optionally use a venv, e.g., `python -m venv venv && source venv/bin/activate` in Linux or `python -m venv venv && venv/Scripts/activate` in Windows.
 
     1. Install packages
