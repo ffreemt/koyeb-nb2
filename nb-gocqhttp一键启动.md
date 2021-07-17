@@ -7,7 +7,7 @@
 *   安装 `python 3.7` 或以上（谷歌bing或百度）
 *   安装 `nodejs` （谷歌bing或百度）
 *   安装 `pm2`
-    *  命令行运行 `npm install pm2 -g` # 参看[https://www.npmjs.com/package/pm2/v/4.4.0](https://www.npmjs.com/package/pm2/v/4.4.0)
+    *  命令行运行 `npm install pm2 -g`  # 参看[https://www.npmjs.com/package/pm2/v/4.4.0](https://www.npmjs.com/package/pm2/v/4.4.0)
 *  下载 koyeb-nb repo
     例如命令行运行 `git clone https://github.com/ffreemt/koyeb-nb2`
 ## 建立 Python 虚拟环境`venv`
