@@ -8,7 +8,7 @@
 *   安装 `nodejs` （谷歌bing或百度）
 *   安装 `pm2`
     *  命令行运行 `npm install pm2 -g` # [https://www.npmjs.com/package/pm2/v/4.4.0](https://www.npmjs.com/package/pm2/v/4.4.0)
-*  下载 koyeb-nb repo
+*  下载 koyeb-nb repo   
     例如命令行运行 git clone https://github.com/ffreemt/koyeb-nb2
 ## 建立 Python 虚拟环境`venv`
 ```bash
@@ -22,9 +22,9 @@ python -m pip install -r requirements-win.txt
 如果系统里装了Python3.7，也可以命令行运行 `setup-windows-python-venv.bat` 或点击 `setup-windows-python-venv.bat`
 
 ##   设置机器人qq号、密码及验证
-    * 目录行运行`go-cqhttp-940fix5` 目录里的`go-cqhttp_windows_amd64.exe`
-        * 参考`config.json-`用文本编辑器（如`vscode`）编辑修改 `config.json`: 机器人`qq`号(`uin`)和密码(`password`)以及``go-cqhttp_windows_amd64.exe``
-    * 再次运行`go-cqhttp_windows_amd64.exe`, 并按要求验证qq号。
+* 命令行运行`go-cqhttp-940fix5` 目录里的`go-cqhttp_windows_amd64.exe`
+    * 参考`config.json-`用文本编辑器（如`vscode`）编辑修改 `config.json`: 机器人`qq`号(`uin`)和密码(`password`)以及``go-cqhttp_windows_amd64.exe``
+* 再次运行`go-cqhttp_windows_amd64.exe`, 并按要求验证qq号。
 
 ## 启动 `nonebot2` 及 `go-cqhttp`
 命令行运行或点击koyeb-nb目录里的
