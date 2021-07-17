@@ -26,7 +26,7 @@ python -m pip install -r requirements-win.txt
 ##   设置机器人qq号、密码及验证
 * 命令行运行`go-cqhttp-940fix5` 目录里的`go-cqhttp_windows_amd64.exe`
     * 参考`config.json-`用文本编辑器（如`vscode`）编辑修改 `config.json`: 机器人`qq`号(`uin`)和密码(`password`)以及``reverse_url``
-* 再次运行`go-cqhttp_windows_amd64.exe`, 并按要求验证qq号。
+* 再次运行`go-cqhttp_windows_amd64.exe`, 并按要求验证qq号
 
 ## 启动 `nonebot2` 及 `go-cqhttp`
 命令行运行或点击`koyeb-nb`目录里的

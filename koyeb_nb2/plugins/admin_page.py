@@ -17,7 +17,6 @@ async def _():
 @bot.server_app.route('/admin')
 改成
    @nonebot.get_asgi().get('/admin')
-就可以了吧？我过会儿试试
 """
 # from quart import request
 
@@ -35,7 +34,7 @@ app = nonebot.get_asgi()
 
 
 # @bot.server_app.route('/admin')
-@app.get('/admin/')
+@app.get("/admin/")
 async def admin_page(q: str = None):
     """Get q."""
     if q:
@@ -43,7 +42,7 @@ async def admin_page(q: str = None):
     else:
         query = ""
 
-    logger.debug('nonebot.get_bots(): %s', nonebot.get_bots())
+    logger.debug("nonebot.get_bots(): %s", nonebot.get_bots())
 
     # bot = nonebot.get_bots().get("2129462094")
     bots = [*nonebot.get_bots().values()]
@@ -62,4 +61,4 @@ async def admin_page(q: str = None):
     except Exception as exc:
         logger.error(exc)
         logger.exception(exc)
-    return f'_欢迎来到nb2管理页面 q: {query}\n'
+    return f"_欢迎来到nb2管理页面 q: {query}\n"
