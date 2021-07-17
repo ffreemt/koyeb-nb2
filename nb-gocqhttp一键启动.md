@@ -4,12 +4,12 @@
 （[英文（本地及云里docker运行noenbot2）](https://github.com/ffreemt/koyeb-nb2/blob/master/README.md)）
 
 ## 准备工具
-    *   安装 `python 3.7` 或以上（谷歌bing或百度）
-    *   安装 `nodejs` （谷歌bing或百度）
-    *   安装 `pm2`
-        *  命令行运行 `npm install pm2 -g` # [https://www.npmjs.com/package/pm2/v/4.4.0](https://www.npmjs.com/package/pm2/v/4.4.0)
-    *  下载 koyeb-nb repo
-        例如命令行运行 git clone https://github.com/ffreemt/koyeb-nb2
+*   安装 `python 3.7` 或以上（谷歌bing或百度）
+*   安装 `nodejs` （谷歌bing或百度）
+*   安装 `pm2`
+    *  命令行运行 `npm install pm2 -g` # [https://www.npmjs.com/package/pm2/v/4.4.0](https://www.npmjs.com/package/pm2/v/4.4.0)
+*  下载 koyeb-nb repo
+    例如命令行运行 git clone https://github.com/ffreemt/koyeb-nb2
 ## 建立 Python 虚拟环境`venv`
 ```bash
 cd path-to-koyeb-nb
