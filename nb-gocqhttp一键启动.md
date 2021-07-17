@@ -1,7 +1,7 @@
 # 一键启动 `Nonebot2 + go-cqhttp ` 环境
 `Windows 10`里写`nonebot2`插件
 
-[英文（本地及云里docker运行noenbot2）](https://github.com/ffreemt/koyeb-nb2/blob/master/README.md)
+（[英文（本地及云里docker运行noenbot2）](https://github.com/ffreemt/koyeb-nb2/blob/master/README.md)）
 
 ## 准备工具
     *   安装 `python 3.7` 或以上（谷歌bing或百度）

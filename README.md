@@ -2,6 +2,8 @@
 Nonebot2 up and running with ease
 
 <!--Dockerfile.gocqhttp-nb2 for go-cqhttp-940fix5 and nonebot2-->
+([中文](https://github.com/ffreemt/koyeb-nb2/blob/master/nb-gocqhttp一键启动.md))
+
 
 ## Setup
 
