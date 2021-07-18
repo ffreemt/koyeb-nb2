@@ -11,7 +11,7 @@ import nonebot
 from nonebot.adapters.cqhttp import Bot as CQHTTPBot
 
 # Custom your logger
-# 
+#
 # from nonebot.log import logger, default_format
 # logger.add("error.log",
 #            rotation="00:00",
@@ -21,26 +21,27 @@ from nonebot.adapters.cqhttp import Bot as CQHTTPBot
 
 # You can pass some keyword args config to init function
 
-nonebot.init()
+config = {
+    "host": "0.0.0.0",
+    "port":8680,
+    "debug": True,
+    "nickname": {"elf",}
+}
+nonebot.init(**config)
+
 driver = nonebot.get_driver()
+
 driver.register_adapter("cqhttp", CQHTTPBot)
-
-# Modify some config / config depends on loaded configs
-# 
-config = driver.config
-# do something...
-config.HOST = '0.0.0.0'
-config.PORT = 5580
-config.PORT = 5680  #
-config.NICKNAME = {'ELF', 'elf'}
-config.SUPERUSERS = {41947782}
-config.API_ROOT = 'http://127.0.0.1:5700'
-
-app = nonebot.get_asgi()
 
 nonebot.load_builtin_plugins()
 # @bot /echo 000
+
 nonebot.load_from_toml("pyproject.toml")
+
+# 加载插件目录，该目录下为各插件，以下划线开头的插件将不会被加载
+nonebot.load_plugins("koyeb_nb2/plugins")
+
+app = nonebot.get_asgi()
 
 
 if __name__ == "__main__":

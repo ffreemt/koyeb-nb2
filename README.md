@@ -31,10 +31,11 @@ In `koyeb-nb`
          ```
 2.   run `docker run --rm koyeb-nb`
 
-3.   (Optional) Upload to Docker Hub ([https://hub.docker.com/](https://hub.docker.com/))   
+3.   (Optional) Upload to Docker Hub ([https://hub.docker.com/](https://hub.docker.com/))
     ```
-    docker tag koyeb-nb:latest YOUR-DOCKER-ID/koyeb-nb:latest
-    docker push YOUR-DOCKER-ID/koyeb-nb:latest
+    export DOCKER_ID=your_docker_id  # hub.docker.com
+    docker tag koyeb-nb:latest $DOCKER_ID/koyeb-nb:latest
+    docker push $DOCKER_ID/koyeb-nb:latest
     ```
 4.   Test the bot
     *  Send a private message to the bot: `/echo hey ya`

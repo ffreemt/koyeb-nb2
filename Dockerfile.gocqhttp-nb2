@@ -20,6 +20,7 @@ WORKDIR /koyeb-nb2
 RUN apt-get update \
 && apt-get install -y supervisor 
 
+EXPOSE 8680
 
 COPY --from=builder /koyeb-nb2/venv venv
 COPY gocqhttp.conf /etc/supervisor/conf.d
