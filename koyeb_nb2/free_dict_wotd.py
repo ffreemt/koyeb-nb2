@@ -3,10 +3,7 @@
     word of the day
     idiom of the day
 """
-# import os
-
-# import requests
-# import requests_cache
+from time import time
 import httpx
 from pyquery import PyQuery as pq
 from joblib import Memory
@@ -16,8 +13,16 @@ memory = Memory(location, verbose=0)
 
 
 @memory.cache
-def free_dict_wotd():
-    """Fetch wotd and idiom of the day from freedictionayr.com."""
+def free_dict_wotd(day: float = 0):
+    """Fetch wotd and idiom of the day from freedictionayr.com.
+
+    day: time() // (24 * 3600), cached for the same day, will not visit the website to fetch info.
+    """
+    try:
+        day = int(day)
+    except Exception:
+        day = 0
+
     url = "https://www.thefreedictionary.com/"
     try:
         resp = httpx.get(url, verify=False, timeout=30)
@@ -60,7 +65,7 @@ def free_dict_wotd():
 
 def main():
     """Main."""
-    print("\n\n".join(free_dict_wotd()))
+    print("\n\n".join(free_dict_wotd(time() // (24 * 3600))))
 
 
 if __name__ == "__main__":

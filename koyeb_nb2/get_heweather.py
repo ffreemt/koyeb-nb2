@@ -1,7 +1,4 @@
-'''
-
-https://github.com/oscarcx123/ptcg-bot/blob/master/azure/plugins/weather.py
-'''
+"""Fetch heweather info."""
 # pylint: disable=too-many-locals, pointless-string-statement
 
 import logging

@@ -25,7 +25,9 @@ config = {
     "host": "0.0.0.0",
     "port":8680,
     "debug": True,
-    "nickname": {"elf",}
+    "nickname": {"elf",},
+    "apscheduler_autostart": True,
+    "apscheduler.timezone": "Asia/Shanghai",
 }
 nonebot.init(**config)
 

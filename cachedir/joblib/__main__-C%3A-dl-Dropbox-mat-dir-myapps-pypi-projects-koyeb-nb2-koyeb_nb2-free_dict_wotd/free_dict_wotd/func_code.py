@@ -1,7 +1,15 @@
-# first line: 18
+# first line: 15
 @memory.cache
-def free_dict_wotd():
-    """Fetch wotd and idiom of the day from freedictionayr.com."""
+def free_dict_wotd(day: float = 0):
+    """Fetch wotd and idiom of the day from freedictionayr.com.
+
+    day: time() // (24 * 3600), cached for the same day, will not visit the website to fetch info.
+    """
+    try:
+        day = int(day)
+    except Exception:
+        day = 0
+
     url = "https://www.thefreedictionary.com/"
     try:
         resp = httpx.get(url, verify=False, timeout=30)
