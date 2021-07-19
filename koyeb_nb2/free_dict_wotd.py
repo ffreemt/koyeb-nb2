@@ -1,7 +1,7 @@
 """Fetch free_dict_wotd.
 
-    word of the day
-    idiom of the day
+word of the day
+idiom of the day
 """
 from time import time
 import httpx
@@ -64,7 +64,7 @@ def free_dict_wotd(day: float = 0):
 
 
 def main():
-    """Main."""
+    """Define main."""
     print("\n\n".join(free_dict_wotd(time() // (24 * 3600))))
 
 

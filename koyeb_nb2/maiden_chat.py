@@ -1,5 +1,5 @@
 # coding: utf-8
-r'''Fetch 聊天女仆.
+r"""Fetch 聊天女仆.
 
 https://api.sc2h.cn/
 https://api.sc2h.cn/api/94api.php?type=sc&msg=
@@ -31,31 +31,25 @@ In [184]: resp = requests.get(url_str, headers={'User-agent': UA})
 [...] # doctest: +ELLIPSIS does not work when ... at the beginning
 >>> any(map(lambda x: x in resp, ['你', '一句话', '我', '问题', '大家']))
 True
-'''
+"""
 # pylint: disable=broad-except
 
 import urllib
 import requests
 
-UA = 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17'  # pylint: disable=line-too-long
-HEADERS = {'User-agent': UA}
-URL = 'http://api.sc2h.cn/api/maid.php'
+UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17"  # pylint: disable=line-too-long
+HEADERS = {"User-agent": UA}
+URL = "http://api.sc2h.cn/api/maid.php"
 
 
 def maiden_chat(query, timeout=(55, 66)):
-    ''' get 聊天女仆'''
-    data = {
-        'data': 0,
-        'sign': 'user',
-        'msg': query
-    }
+    """Get a response."""
+    data = {"data": 0, "sign": "user", "msg": query}
 
     try:
         # resp = requests.post(URL, data=data, headers=HEADERS)
         resp = requests.get(
-            f'{URL}?{urllib.parse.urlencode(data)}',
-            headers=HEADERS,
-            timeout=timeout,
+            f"{URL}?{urllib.parse.urlencode(data)}", headers=HEADERS, timeout=timeout,
         )
         resp.raise_for_status()
     except Exception as exc:

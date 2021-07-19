@@ -30,7 +30,7 @@ scheduler.add_job(run_every_2_hour, "interval", days=1, id="xxx1")
 """
 from random import randint
 from time import time
-from datetime import (datetime, timedelta)
+from datetime import datetime, timedelta
 import pytz
 import logzero
 from logzero import logger
@@ -42,7 +42,7 @@ from aiocqhttp.exceptions import Error as CQHttpError
 
 from koyeb_nb2.free_dict_wotd import free_dict_wotd
 
-scheduler = require('nonebot_plugin_apscheduler').scheduler
+scheduler = require("nonebot_plugin_apscheduler").scheduler
 logzero.loglevel(10)
 
 GRP_LIST = [
@@ -50,17 +50,19 @@ GRP_LIST = [
     # 182910943,  # freemdict
     316287378,  # ttw, not yet in the group, will be Exception
 ]
-GRP_LIST0 = [672076603,]  #  CQHTTP 机器人大乱斗
+GRP_LIST0 = [
+    672076603,
+]  # CQHTTP 机器人大乱斗
 
 
 # @nonebot.scheduler.scheduled_job('cron', hour='*', minute='14,29,44,59', second='59')
 # @nonebot.scheduler.scheduled_job('cron', hour='*', minute='0,15,30,45')
 # @scheduler.scheduled_job('cron', minute='*/1', id='run_quarterly')
-@scheduler.scheduled_job('cron', minute='*/15', id='run_quarterly')
+@scheduler.scheduled_job("cron", minute="*/15", id="run_quarterly")
 async def _():
     """Send wotd to ."""
-    now = datetime.now(pytz.timezone('Asia/Shanghai'))
-    now += timedelta(days=0, seconds=.5)  # adjust .5 s
+    now = datetime.now(pytz.timezone("Asia/Shanghai"))
+    now += timedelta(days=0, seconds=0.5)  # adjust .5 s
 
     # about three times a day
     # 4 quaters an hour: 4 * 24 = 96 quaters a day
@@ -69,17 +71,20 @@ async def _():
 
     # if randint(0, 100) > 100:
     if randint(0, 100) > prob * 100:
-        logger.debug(' none trigger at %s', str(now))
+        logger.debug(" none trigger at %s", str(now))
         return None
-    logger.debug(' this triggers at %s', str(now))
+    logger.debug(" this triggers at %s", str(now))
 
     try:
         texts = free_dict_wotd(time() // (24 * 3600))  # same day uses cache
     except Exception as exc:
         texts = str(exc), ""
 
-    message = '**word & idiom of the day (http://www.thefreedictionary.com )**\n\n' + '\n\n'.join(texts)
-    logger.debug('\t\t >==> now: %s', message[:20])
+    message = (
+        "**word & idiom of the day (http://www.thefreedictionary.com )**\n\n"
+        + "\n\n".join(texts)
+    )
+    logger.debug("\t\t >==> now: %s", message[:20])
 
     bots = [*nonebot.get_bots().values()]
     bot = None
@@ -93,21 +98,22 @@ async def _():
         # if group_id in GRP_LIST0:  # flip a coin
         if group_id in GRP_LIST0:  # flip a coin
             if randint(0, 1) == 0:
-                continue  #  skip by 50%
+                continue  # skip by 50%
 
         try:
             await bot.send_group_msg(group_id=group_id, message=message)
         except CQHttpError as exc:
             # nonebot.logger.exception(exc)
-            logger.debug('\n--Bummer-- CQHttpError: %s', exc)
+            logger.debug("\n--Bummer-- CQHttpError: %s", exc)
         except Exception as exc:
-            logger.debug('\n--Bummer2-- OtherError: %s', exc)
+            logger.debug("\n--Bummer2-- OtherError: %s", exc)
     try:
         await bot.send_private_msg(user_id=41947782, message=message)
     except CQHttpError as exc:
         nonebot.logger.exception(exc)
-        logger.debug('\n--Bummer-- CQHttpError: %s', exc)
+        logger.debug("\n--Bummer-- CQHttpError: %s", exc)
     except Exception as exc:
-        logger.debug('\n--Bummer2-- OtherError: %s', exc)
+        logger.debug("\n--Bummer2-- OtherError: %s", exc)
+
 
 # scheduler.add_job(run_quarterly, "interval", days=1, id="run_quarterly1")

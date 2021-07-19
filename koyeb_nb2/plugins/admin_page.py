@@ -1,4 +1,5 @@
-"""
+"""Test personal push service.
+
 curl 127.0.0.1:5580/admin?q=123
 curl 127.0.0.1:8680/admin?q=123
 or

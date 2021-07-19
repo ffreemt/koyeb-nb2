@@ -1,0 +1,28 @@
+{
+    "name": "koyeb-nb2",
+    "version": "0.1.0",
+    "description": "description",
+    "main": "index.js",
+    "repository": "git@github.com:ffreemt/koyeb-nb2.git",
+    "author": "ffreemt",
+    "license": "MIT",
+    "dependencies": {
+        "npm-run-all": "^4.1.5"
+    },
+    "scripts": {
+        "start": "pyright && pytest && yarn style",
+        "test": "nodemon -w tests -w koyeb_nb2 -x pytest tests",
+        "pyright": "nodemon -w koyeb_nb2 -w .venv -e .py -x pyright koyeb_nb2 tests",
+        "pytest": "nodemon -w tests -w koyeb_nb2 -e .py -x pytest tests",
+        "style": "nodemon -w koyeb_nb2 -w tests -x \"black tests koyeb_nb2 && python -m flake8\"",
+        "docstyle": "nodemon -w koyeb_nb2 -w tests -x pydocstyle --convention=google tests koyeb_nb2",
+        "pylint": "nodemon -w koyeb_nb2 -e .py -x pylint koyeb_nb2",
+        "test:koyeb_nb2": "nodemon -w tests -e .py -x pytest -k koyeb_nb2 tests",
+        "publish": "poetry build && poetry publish",
+        "black": "black tests koyeb_nb2",
+        "flake8": "flake8 tests koyeb_nb2",
+        "pytest": "pytest",
+        "pep257": "pep257 tests koyeb_nb2",
+        "final": "run-s pep257 black flake8 pytest"
+    }
+}
