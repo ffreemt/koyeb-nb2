@@ -28,7 +28,7 @@ async def handle(bot: Bot, event: Event, state: dict):
     except Exception as e:
         logger.error(e)
         news.finish(e)
-        raise
+        # raise
 
     if not Path(file_loc):
         logger.warning(" %s does not exist.", file_loc)
