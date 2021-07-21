@@ -14,10 +14,11 @@ from nonebot.adapters.cqhttp import Bot  # , Event
 
 # from nonebot.rule import Rule
 
+from jsonpath_ng import parse
 import logzero
 from logzero import logger
 
-from koyeb_nb2.jpmatch import jpmatch
+# from koyeb_nb2.jpmatch import jpmatch
 
 logzero.loglevel(10)
 GRP_NAME = dict(
@@ -36,6 +37,20 @@ GRP_NAME = dict(
 )
 
 on_notice_ = on_notice()
+
+
+def jpmatch(x, y):
+    """Emulate jsonpath_ext_rw.
+
+    >>> jpmatch("$..baz", {'foo': [{'baz': 1}, {'baz': 2}]})
+    [1, 2]
+    >>> jpmatch("foo[*].baz", {'foo': [{'baz': 1}, {'baz': 2}]})
+    [1, 2]
+    >>> jpmatch("$.foo[*].baz", {'foo': [{'baz': 1}, {'baz': 2}]})
+    [1, 2]
+    """
+    return [elm.value for elm in parse(x).find(y)]
+
 
 # async def _(session: NoticeSession):
 @on_notice_.handle()

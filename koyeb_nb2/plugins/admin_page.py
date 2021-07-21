@@ -58,8 +58,8 @@ async def admin_page(q: str = None):
         await bot.send_private_msg(user_id=41947782, message=f".你的主页被访问了nb2 q: {query}")
     except CQHttpError as exc:
         logger.error(exc)
-        logger.exception(exc)
+        # logger.exception(exc)
     except Exception as exc:
         logger.error(exc)
-        logger.exception(exc)
+        # logger.exception(exc)
     return f"_欢迎来到nb2管理页面 q: {query}\n"

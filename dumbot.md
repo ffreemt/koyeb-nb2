@@ -21,7 +21,7 @@ python -m pip install pip -U
 ```
 如果系统里装了Python3.7，也可以命令行运行 `setup-windows-python-venv.bat` 或点击 `setup-windows-python-venv.bat`
 
-## 安装`python`包
+## 安装`pip`包
 命令行换到`koyeb-nb`目录（例如`cd path-to-koyeb-nb`）运行
 ```bash
 python -m pip install -r requirements-win.txt
@@ -55,7 +55,7 @@ python -m pip install -r requirements-win.txt
 在`koyeb_nb2\plugins`目录里新开或修改 `.py`插件文件，编辑、存盘时`nonebot2`会重新启动载入新的插件文件。
 
 `koyeb_nb2\plugins`含几个插件的雏形
-*   `admin_page`：私人推送服务
+*   `admin_page`：类似`server`酱私人推送服务
 *   `wotd`: `thefreedictionary.com`每日一字一短语随机推送
 *   `welcome_memb`：欢迎新人入群
 *   多语闲聊：TODO
