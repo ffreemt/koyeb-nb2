@@ -13,6 +13,12 @@ zb_image = Path(__file__).parent / "zaobao_news.png"
 @memory.cache
 def get_file_loc(day=0):
     """Fetch zao bao news image and save to file_loc."""
+    try:
+        day = int(day)
+    except Exception as e:
+        logger.error(e)
+        raise
+
     img = fetch_zaobao_news_image(day=day)
     try:
         zb_image.write_bytes(img)

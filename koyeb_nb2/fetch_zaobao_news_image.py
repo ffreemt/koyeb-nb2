@@ -29,6 +29,12 @@ def fetch_zaobao_news_image(day: int = 0) -> bytes:
     >>> len(image) > 1000
     """
     try:
+        day = int(day)
+    except Exception as exc:
+        logger.error(e)
+        raise
+
+    try:
         resp = httpx.get(url_zb)
         resp.raise_for_status()
     except Exception as e:
