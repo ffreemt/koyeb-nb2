@@ -58,7 +58,7 @@ python -m pip install -r requirements-win.txt
 *   `admin_page`：类似`server`酱私人推送服务
 *   `wotd`: `thefreedictionary.com`每日一字一短语随机推送
 *   `welcome_memb`：欢迎新人入群
-*   `news`: 新闻一览
+*   `news`: 新闻一览，/news /新闻 /xinwen
 *   多语闲聊：TODO
 
 ## 可选
