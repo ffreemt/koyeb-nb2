@@ -2,7 +2,8 @@
 from pathlib import Path
 
 # import io
-from time import time
+# from time import time
+import arrow
 import logzero
 from logzero import logger
 from nonebot import on_command
@@ -21,7 +22,9 @@ news = on_command("news", aliases={"xinwen", "新闻", "无聊"}, priority=5,)
 @news.handle()
 async def handle(bot: Bot, event: Event, state: dict):
     """Handle news requests."""
-    day = round(time() // (24 * 3600))
+    # day = round(time() // (24 * 3600))
+    day = int(arrow.utcnow().to("Asia/Shanghai").format("YYYYMMDD"))
+    
     try:
         # img = fetch_zaobao_news_image(day)
         file_loc = get_file_loc(day)
