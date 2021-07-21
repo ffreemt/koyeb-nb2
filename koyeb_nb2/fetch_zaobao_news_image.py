@@ -49,7 +49,8 @@ def fetch_zaobao_news_image(day: int = 0) -> bytes:
     image_add = jdata.get("imageUrl", "")
     if not image_add:
         logger.warning(jdata)
-        return b""
+        # return ""
+        raise Exception(f"imageUrl empty: {jdata}")
 
     try:
         resp = httpx.get(image_add)
