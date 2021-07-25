@@ -127,8 +127,8 @@ async def receive(bot: Bot, event: Event, state: dict):
     try:
         await send_text(text, scrape, width)
     except Exception as e:
-        logger.error(e)
-        await scrape.finish(f"Errors: {e}")
+        logger.error("send_text exc: %s", e)
+        # await scrape.finish(f"Errors: {e}")
 
 
 async def send_text(text: str, matcher: nonebot.matcher.Matcher, width: int = 70):
@@ -145,8 +145,8 @@ async def send_text(text: str, matcher: nonebot.matcher.Matcher, width: int = 70
     try:
         for seg in text_list[:-1]:
             await matcher.send(seg)
-            await asyncio.sleep(1)
+            await asyncio.sleep(0.2)
         await matcher.finish(text_list[-1])
     except Exception as e:
-        logger.error(e)
-        await matcher.finish(f"{e}")
+        logger.error(" for seg loop exc: %s", e)
+        # await matcher.finish(f"{e}")
