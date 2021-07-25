@@ -1,6 +1,5 @@
 r'''Provide brief help on all plugins.
 
-
 nonebot.argparse
 https://docs.nonebot.dev/api.html#nonebot-argparse-%E6%A8%A1%E5%9D%97
 USAGE = r"""

@@ -21,10 +21,12 @@ async def _():
 """
 # from quart import request
 
+from platform import node
 import logzero
 from logzero import logger
 
 import nonebot
+from contextvars import ContextVar
 from aiocqhttp.exceptions import Error as CQHttpError
 
 logzero.loglevel(10)
@@ -32,6 +34,8 @@ logzero.loglevel(10)
 # bot = nonebot.get_driver()
 
 app = nonebot.get_asgi()
+node_ = node()
+# current_bot: ContextVar = ContextVar("current_bot")
 
 
 # @bot.server_app.route('/admin')
@@ -45,6 +49,7 @@ async def admin_page(q: str = None):
 
     logger.debug("nonebot.get_bots(): %s", nonebot.get_bots())
 
+    _ = """
     # bot = nonebot.get_bots().get("2129462094")
     bots = [*nonebot.get_bots().values()]
     bot = None
@@ -53,13 +58,34 @@ async def admin_page(q: str = None):
 
     if not bot:
         return
+    """
 
+    _ = [*nonebot.get_bots().values()]
+    bot = _[0] if _ else None
+    if not bot:
+        _ = "Unable to acquire bot, exit."
+        logger.warning(_)
+        return f"{node_:} {_}"
+
+    _ = """
     try:
-        await bot.send_private_msg(user_id=41947782, message=f".你的主页被访问了nb2 q: {query}")
+        bot = current_bot.get()
+        # event = current_event.get()
+    except Exception as e:
+        logger.error(e)
+        return f"exc: {e}"
+    """
+
+    msg = f"{node_} seen q: {query}"
+    try:
+        await bot.send_private_msg(user_id=41947782, message=msg)
     except CQHttpError as exc:
         logger.error(exc)
         # logger.exception(exc)
+        msg = f"{node_} exc: {exc}"
     except Exception as exc:
         logger.error(exc)
         # logger.exception(exc)
-    return f"_欢迎来到nb2管理页面 q: {query}\n"
+        msg = f"{node_} exc: {exc}"
+
+    return f"{msg}"

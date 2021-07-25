@@ -24,14 +24,19 @@ async def handle(bot: Bot, event: Event, state: dict):
     """Handle news requests."""
     # day = round(time() // (24 * 3600))
     day = int(arrow.utcnow().to("Asia/Shanghai").format("YYYYMMDD"))
-    
+
+    logger.debug("state: %s", state)
+
+    file_loc = None
     try:
         # img = fetch_zaobao_news_image(day)
         file_loc = get_file_loc(day)
     except Exception as e:
         logger.error(e)
-        news.finish(e)
+        # news.finish(e)
+        news.send(f"{e}")
         # raise
+        return None
 
     if not Path(file_loc):
         logger.warning(" %s does not exist.", file_loc)
@@ -40,6 +45,16 @@ async def handle(bot: Bot, event: Event, state: dict):
 
     try:
         logger.debug("file_loc: %s", file_loc)
-        await news.send(MessageSegment.image(f"file:///{file_loc}"))
+
+        # 1 / 0
+        # await news.send(MessageSegment.image(f"file:///{file_loc}"))
+
+        await news.finish(MessageSegment.image(f"file:///{file_loc}"))
     except Exception as e:
         logger.error(e)
+        try:
+            # await news.send(e)  # nogo
+            await news.finish(f"{e}")
+            # await news.send(f"{e}")
+        except Exception as e:
+            logger.error(e)

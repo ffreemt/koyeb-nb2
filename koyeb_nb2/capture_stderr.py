@@ -1,4 +1,9 @@
-"""Send stderr to a string."""
+"""Send stderr to a string.
+
+Does not work yet.
+
+Use contexlib redirect_stderr/redirect_stdout instead.
+"""
 import sys
 from io import StringIO
 from contextlib import contextmanager
