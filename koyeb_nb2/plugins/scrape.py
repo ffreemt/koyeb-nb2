@@ -58,16 +58,19 @@ async def handle(bot: Bot, event: Event, state: dict):
     )
 
     command = str(event.message).strip()
-    if not command:
-        await scrape.send("Provide a url")
-        return None
 
     args, stdout, stderr = parse_cmd(command, parser)
     logger.debug("args: %s", args)
 
     _vars.update({"args": args})
+    logger.debug("_vars: %s", _vars)
+
     if stdout or stderr:
         await scrape.finish("\n---\n".join([stdout, stderr]))
+
+    if not args.url:
+        await scrape.send("Provide a url")
+        return None
 
     try:
         text = url2txt(
@@ -95,6 +98,7 @@ async def receive(bot: Bot, event: Event, state: dict):
     logger.debug("state: %s", state)
     try:
         url = str(event.message).strip()
+        logger.debug("url: %s", url)
     except Exception as e:
         logger.error(e)
         await scrape.finish(f"Errors: {e}")
@@ -104,7 +108,7 @@ async def receive(bot: Bot, event: Event, state: dict):
     if args is None:
         _ = "args is None, something has gone awry, exiting."
         logger.error(_)
-        scrape.finish(_)
+        await scrape.finish(_)
         return None
 
     try:
