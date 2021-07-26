@@ -17,11 +17,14 @@ fastapi==0.63.0
 h11==0.12.0
 h2==4.0.0
 hpack==4.0.0
+html2text==2020.1.16
 httpcore==0.12.3
 httpx==0.17.1
 Hypercorn==0.11.2
 hyperframe==6.0.1
 idna==3.2
+ipython==7.25.0
+ipython-genutils==0.2.0
 itsdangerous==2.0.1
 jedi==0.18.0
 Jinja2==3.0.1
@@ -44,7 +47,7 @@ pickleshare==0.7.5
 ply==3.11
 poyo==0.5.0
 priority==2.0.0
-prompt-toolkit==1.0.14
+prompt-toolkit==3.0.19
 pydantic==1.8.2
 pyfiglet==0.8.post1
 Pygments==2.9.0
@@ -57,6 +60,7 @@ python-slugify==5.0.2
 pytz==2021.1
 PyYAML==5.4.1
 Quart==0.14.1
+readability-lxml==0.8.1
 regex==2021.7.6
 requests==2.26.0
 rfc3986==1.5.0
@@ -72,12 +76,9 @@ typing-extensions==3.10.0.0
 tzlocal==2.1
 urllib3==1.26.6
 uvicorn==0.13.4
-uvloop==0.15.3
 watchgod==0.7
 wcwidth==0.2.5
 websockets==8.1
 Werkzeug==2.0.1
 win32-setctime==1.0.3
 wsproto==1.0.0
-readability-lxml==0.8.1
-html2text==2020.1.16

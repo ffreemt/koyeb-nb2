@@ -34,13 +34,13 @@ async def handle(bot: Bot, event: Event, state: dict):
     except Exception as e:
         logger.error(e)
         # news.finish(e)
-        news.send(f"{e}")
+        await news.finish(f"{e}")
         # raise
         return None
 
     if not Path(file_loc):
         logger.warning(" %s does not exist.", file_loc)
-        news.send(" %s does not exist." % file_loc)
+        await news.finish(" %s does not exist." % file_loc)
         return None
 
     try:

@@ -6,12 +6,17 @@ authors = []
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+# python = "^3.7"
+python = "^3.7.3"
 nonebot2 = "^2.0.0.a1"
-nb-cli = "^0.1.0"
+nonebot-plugin-guess = "^0.1.5"
+chardet = "^4.0.0"
+Jinja2 = "^3.0.1"
+nonebot-adapter-cqhttp = "^2.0.0-alpha.13"
 
 [tool.poetry.dev-dependencies]
 nonebot-test = "^0.1.0"
+poethepoet = "^0.10.0"
 
 [nonebot.plugins]
 plugins = []
