@@ -37,7 +37,7 @@ matplotlib-inline==0.1.2
 nb-cli==0.4.2
 nonebot-adapter-cqhttp==2.0.0a13
 nonebot-plugin-apscheduler==0.1.2
-nonebot-plugin-guess==0.1.3
+nonebot-plugin-guess==0.1.5
 nonebot2==2.0.0a13.post1
 parso==0.8.2
 pickleshare==0.7.5
