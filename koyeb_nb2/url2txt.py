@@ -88,6 +88,6 @@ def url2txt(
         logger.warning("Output seems to be empty...")
 
     if show_url:
-        return f"{url}\n{doc.title()}\n{res}"
+        return f"{url}\n# {doc.title()}\n{res}"
 
-    return f"{doc.title()}\n{res}"
+    return f"# {doc.title()}\n{res}"
