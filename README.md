@@ -58,6 +58,8 @@ Optionally use a venv, e.g., `python -m venv venv && source venv/bin/activate` i
 1. Install packages
 In `koyeb-nb`, run `pip install -r requirements.text`
 
+    Or run `poetry install` and **`pip install nonebot2 -U`** since we need `nonebot2a13post1` but poetry cannot handle `post`.
+
 2. Run `go-cqhttp`/`nonebot` and make your own plugin
     *   In `go-cqhttp-940fix5`, run `go-cqhttp`
         N.B. For Windows, download and run go-cqhttp.exe

@@ -23,7 +23,7 @@ from nonebot.adapters.cqhttp import Bot as CQHTTPBot
 
 config = {
     "host": "0.0.0.0",
-    "port":8680,
+    "port": 8680,
     "debug": True,
     "nickname": {"elf",},
     "apscheduler_autostart": True,

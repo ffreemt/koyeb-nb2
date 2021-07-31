@@ -8,7 +8,7 @@ readme = "README.md"
 [tool.poetry.dependencies]
 # python = "^3.7"
 python = "^3.7.3"
-nonebot2 = "^2.0.0.a1"
+nonebot2 = "^2.0.0-alpha.13"
 nonebot-plugin-guess = "^0.1.5"
 chardet = "^4.0.0"
 Jinja2 = "^3.0.1"
@@ -18,6 +18,9 @@ aiocqhttp = "^1.4.1"
 readability-lxml = "^0.8.1"
 html2text = "^2020.1.16"
 jsonpath-ng = "^1.5.3"
+nonebot-plugin-apscheduler = "^0.1.2"
+pyquery = "^1.4.3"
+joblib = "^1.0.1"
 
 [tool.poetry.dev-dependencies]
 nonebot-test = "^0.1.0"

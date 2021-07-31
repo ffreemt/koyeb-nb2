@@ -1,0 +1,19 @@
+pip install nonebot2 -U
+html2txt
+readability-lxml
+pyquery
+joblib
+nonebot2-plugin-scheduler
+---
+pip install -r requirements.txt
+ERROR: pyinquirer 1.0.3 has requirement prompt_toolkit==1.0.14, but you'll have prompt-toolkit 3.0.19 which is incompatible.
+ERROR: nonebot-plugin-guess 0.1.5 has requirement python-dotenv<0.20.0,>=0.19.0, but you'll have python-dotenv 0.17.1 which is incompatible.
+
+pip install python-dotenv -U
+pip check
+    pyinquirer 1.0.3 has requirement prompt_toolkit==1.0.14, but you have prompt-toolkit 3.0.19.
+
+    pyinquirer used in nb-cli?
+pip uninstall nb-cli
+    pip show pyinquirer
+    pip uninstall pyinquirer
