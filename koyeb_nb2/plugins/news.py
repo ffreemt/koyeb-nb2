@@ -16,7 +16,7 @@ from nonebot.adapters.cqhttp import MessageSegment
 from koyeb_nb2.get_file_loc import get_file_loc
 
 logzero.loglevel(10)
-news = on_command("news", aliases={"xinwen", "新闻", "无聊"}, priority=5,)
+news = on_command("news", aliases={"xinwen", "新闻", "无聊"}, priority=4,)
 
 
 @news.handle()
@@ -43,18 +43,4 @@ async def handle(bot: Bot, event: Event, state: dict):
         await news.finish(" %s does not exist." % file_loc)
         return None
 
-    try:
-        logger.debug("file_loc: %s", file_loc)
-
-        # 1 / 0
-        # await news.send(MessageSegment.image(f"file:///{file_loc}"))
-
-        await news.finish(MessageSegment.image(f"file:///{file_loc}"))
-    except Exception as e:
-        logger.error(e)
-        try:
-            # await news.send(e)  # nogo
-            await news.finish(f"{e}")
-            # await news.send(f"{e}")
-        except Exception as e:
-            logger.error(e)
+    await news.finish(MessageSegment.image(f"file:///{file_loc}"))

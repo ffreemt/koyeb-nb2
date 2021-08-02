@@ -2,6 +2,12 @@
 
 curl 127.0.0.1:5580/admin?q=123
 curl 127.0.0.1:8680/admin?q=123
+
+# works only on http not https
+# works http://127.0.0.1:8680/admin/
+# does not work: https://127.0.0.1:8680/admin/
+
+    koyeb-nb2
 or
 curl externalip:5580/admin?q=123
     if firewall is set open
@@ -19,14 +25,16 @@ async def _():
 改成
    @nonebot.get_asgi().get('/admin')
 """
+# pylint: disable=invalid-name
 # from quart import request
 
-from platform import node
+import platform
+
+# from contextvars import ContextVar
 import logzero
 from logzero import logger
 
 import nonebot
-from contextvars import ContextVar
 from aiocqhttp.exceptions import Error as CQHttpError
 
 logzero.loglevel(10)
@@ -34,7 +42,7 @@ logzero.loglevel(10)
 # bot = nonebot.get_driver()
 
 app = nonebot.get_asgi()
-node_ = node()
+node = platform.node()
 # current_bot: ContextVar = ContextVar("current_bot")
 
 
@@ -65,27 +73,28 @@ async def admin_page(q: str = None):
     if not bot:
         _ = "Unable to acquire bot, exit."
         logger.warning(_)
-        return f"{node_:} {_}"
+        return f"{node:} {_}"
 
     _ = """
     try:
-        bot = current_bot.get()
+        bot1 = current_bot.get()
         # event = current_event.get()
+        logger.debug("dir(bot): %s", bot1)
     except Exception as e:
-        logger.error(e)
-        return f"exc: {e}"
-    """
+        logger.error("current_bot.get() exc: %s", e)
+        # return f"exc: {e}"
+    # """
 
-    msg = f"{node_} seen q: {query}"
+    msg = f"{node} seen q: {query}"
     try:
         await bot.send_private_msg(user_id=41947782, message=msg)
     except CQHttpError as exc:
         logger.error(exc)
         # logger.exception(exc)
-        msg = f"{node_} exc: {exc}"
+        msg = f"{node} exc: {exc}"
     except Exception as exc:
         logger.error(exc)
         # logger.exception(exc)
-        msg = f"{node_} exc: {exc}"
+        msg = f"{node} exc: {exc}"
 
     return f"{msg}"
