@@ -113,7 +113,7 @@ async def handle(bot: Bot, event: Event, state: dict):
     lang = fastlid(msg)
     if lang[0] not in ["en"]:
         try:
-            await bot.send(message=f"I detect you are talking in [{lang}], which I currently are unable to understand. (I'll be able to chat in German and French soon.)", event=event)
+            await bot.send(message=f"I detect you are talking in [{lang}], which I currently am unable to understand. (I'll be able to chat in German and French soon.)", event=event)
         except Exception as e:
             logger.error(e)
 
@@ -136,7 +136,7 @@ async def handle(bot: Bot, event: Event, state: dict):
         msg = choice([
             "You are talking nonesense or something is probably wrong. In the latter case, conatct my master.",
             "You are talking nonesense or something is probably wrong. In the latter case, contact my master. In the former case, well...",
-            "Eitehr you are talking nonesense or something is probably wrong. In the latter case, contact my master.",
+            "Either you are talking nonesense or something is probably wrong. In the latter case, contact my master.",
             "If you are not talking nonesense, then something is probably wrong.",
         ])
         try:
