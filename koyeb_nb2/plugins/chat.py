@@ -15,7 +15,9 @@ from nonebot.adapters.cqhttp import Bot, Event
 
 # from nonebot.log import logger
 
-from koyeb_nb2.fetch_convbot import fetch_convbot
+# from koyeb_nb2.fetch_convbot import fetch_convbot
+# from koyeb_nb2.fetch_qinyunke import fetch_qinyunke
+from koyeb_nb2.bot_response import bot_response
 
 logzero.loglevel(10)
 
@@ -111,18 +113,16 @@ async def handle(bot: Bot, event: Event, state: dict):
 
     # detect language
     lang = fastlid(msg)
-    if lang[0] not in ["en"]:
+    if lang[0] not in ["en", "zh", "fr", "de"]:
         try:
-            await bot.send(message=f"I detect you are talking in [{lang}], which I currently am unable to understand. (I'll be able to chat in German and French soon.)", event=event)
+            await bot.send(message=f"I detect you are talking in [{lang}], which I currently am unable to understand. (I am able to chat in Chinese, English, German and French.)", event=event)
         except Exception as e:
             logger.error(e)
 
     try:
-        # resp = bot_response(msg)
-        resp = await fetch_convbot(msg, handle.prev_resp)
-        handle.prev_resp = resp
+        resp = await bot_response(msg)
     except Exception as e:
-        logger.error(e)
+        logger.error("bot_response exc: %s", e)
         resp = str(e)
 
     # empty response from the bot

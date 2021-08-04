@@ -3,6 +3,7 @@
 httpx.get("https://api.2xb.cn/zaob").json().get("imageUrl")
 MessageSegement.image
 """
+# pylint: disable=invalid-name
 import httpx
 
 # from time import time
@@ -30,7 +31,7 @@ def fetch_zaobao_news_image(day: int = 0) -> bytes:
     """
     try:
         day = int(day)
-    except Exception as exc:
+    except Exception as e:
         logger.error(e)
         raise
 

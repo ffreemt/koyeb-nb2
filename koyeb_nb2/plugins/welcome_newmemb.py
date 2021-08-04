@@ -6,6 +6,17 @@ https://blog.csdn.net/What_ever_Y/article/details/114807597
     https://www.codeleading.com/article/35095362545/
         https://zhuanlan.zhihu.com/p/373323656
 https://github.com/cscs181/QQ-GitHub-Bot/blob/master/src/plugins/nonebot_plugin_status/__init__.py
+
+--
+bot.py
+nonebot.init(**config)
+
+--
+state = {'group_id': 182910943, 'notice_type': 'group_increase', 'operator_id': 173881227, 'post_type': 'notice', 'self_id': 1919279707, 'sub_type': 'approve', 'time': 1547790883, 'user_id': 778943263}
+
+event = GroupIncreaseNoticeEvent(time=1, self_id=1, post_type="notice", notice_type="group_increase", sub_type="a", user_id=1, group_id=1, operator_id=1)
+await handle(nonebot, event, state)
+
 """
 from nonebot import on_notice
 from nonebot.typing import T_State
@@ -61,10 +72,20 @@ async def handle(bot: Bot, event: GroupIncreaseNoticeEvent, state: T_State):
     user_id = jpmatch("$.user_id", state)[0]
     group_id = jpmatch("$.group_id", state)[0]
 
-    self_info = await bot.get_login_info()
-    group_member_info = await bot.get_group_member_info(
-        group_id=group_id, user_id=user_id, no_cache=True
-    )
+    try:
+        self_info = await bot.get_login_info()
+    except Exception as e:
+        logger.error(e)
+        self_info = str(e)
+
+    try:
+        group_member_info = await bot.get_group_member_info(
+            group_id=group_id, user_id=user_id, no_cache=True
+        )
+    except Exception as e:
+        logger.error(e)
+        group_member_info = str(e)
+
     logger.info(
         "***=> user_id %s, group_member_info: %s, self_info: %s",
         user_id,
@@ -72,15 +93,25 @@ async def handle(bot: Bot, event: GroupIncreaseNoticeEvent, state: T_State):
         self_info,
     )
 
-    nm_name = (
-        jpmatch("$.card", group_member_info)[0]
-        or jpmatch("$.nickname", group_member_info)[0]
-    )
-    group_id = jpmatch("$.group_id", group_member_info)[0]
+    try:
+        nm_name = (
+            jpmatch("$.card", group_member_info)[0]
+            or jpmatch("$.nickname", group_member_info)[0]
+        )
+    except Exception as e:
+        logger.error(e)
+        nm_name = "新人"
+
+    try:
+        group_id = jpmatch("$.group_id", group_member_info)[0]
+    except Exception as e:
+        logger.error(e)
+        group_id = 1
     if group_id not in GRP_NAME:
         return None
 
-    group_name = GRP_NAME.get(group_id)
+    group_name = GRP_NAME.get(group_id, "本")
+
     msg = f"欢迎 {nm_name} 加入{group_name}群。"
     if group_id in [182910943]:
         msg += "(请查看本群须知。)"
