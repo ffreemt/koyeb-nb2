@@ -59,7 +59,7 @@ python -m pip install -r requirements-win.txt
 *   `wotd`: `thefreedictionary.com`每日一字一短语随机推送
 *   `welcome_memb`：欢迎新人入群
 *   `news`: 新闻一览，/news /新闻 /xinwen
-*   多语闲聊：TODO
+*   中英德法四语闲聊：群里艾特或发私信给bot，中：青云客接口，英：微软GPT对话小模型，德法： 基于恐龙AIML语言
 
 ## 可选
 
