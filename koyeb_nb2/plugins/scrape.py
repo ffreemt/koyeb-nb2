@@ -1,4 +1,8 @@
-"""Scrape text from a url."""
+"""Scrape text from a url.
+
+For more info on usage:
+/scrape -h
+"""
 import asyncio
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import textwrap

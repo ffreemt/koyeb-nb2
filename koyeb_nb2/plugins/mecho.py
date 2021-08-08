@@ -1,4 +1,4 @@
-"""Send msg back via echo with hostname."""
+"""Send msg back via echo with hostname attached."""
 from platform import node
 
 from nonebot.plugin import on_command

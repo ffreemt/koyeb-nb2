@@ -1,4 +1,5 @@
-"""
+"""Bootstrap the bot.
+
 to config
     edit .env .env.dev .env.prod
 
@@ -38,13 +39,15 @@ driver.register_adapter("cqhttp", CQHTTPBot)
 nonebot.load_builtin_plugins()
 # @bot /echo 000
 
-# load plugin installed via pip install
 nonebot.load_plugin("nonebot_plugin_guess")
-
 nonebot.load_from_toml("pyproject.toml")
 
 # 加载插件目录，该目录下为各插件，以下划线开头的插件将不会被加载
+# does not seem to load, return set()
 nonebot.load_plugins("koyeb_nb2/plugins")
+
+# load plugin installed via pip install, order matters
+# nonebot.load_plugin("nonebot_plugin_autohelp")
 
 app = nonebot.get_asgi()
 

@@ -60,7 +60,7 @@ GRP_LIST0 = [
 # @scheduler.scheduled_job('cron', minute='*/1', id='run_quarterly')
 @scheduler.scheduled_job("cron", minute="*/15", id="run_quarterly")
 async def _():
-    """Send wotd to ."""
+    """Send wotd."""
     now = datetime.now(pytz.timezone("Asia/Shanghai"))
     now += timedelta(days=0, seconds=0.5)  # adjust .5 s
 
