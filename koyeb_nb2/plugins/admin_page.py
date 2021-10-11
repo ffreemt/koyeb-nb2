@@ -88,13 +88,17 @@ async def admin_page(q: str = None):
     msg = f"{node} seen q: {query}"
     try:
         await bot.send_private_msg(user_id=41947782, message=msg)
+        res = {"success": msg}
     except CQHttpError as exc:
         logger.error(exc)
         # logger.exception(exc)
         msg = f"{node} exc: {exc}"
+        res = {"error": msg}
     except Exception as exc:
         logger.error(exc)
         # logger.exception(exc)
         msg = f"{node} exc: {exc}"
+        res = {"error": msg}
 
-    return f"{msg}"
+    # return f"{msg}"
+    return res

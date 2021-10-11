@@ -38,4 +38,4 @@ ENV APP=koyeb-nb2/bot.py
 # CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", "-n"]
 
 # CMD ["sh", "-c", "/usr/bin/supervisord", "-c", "/etc/supervisor/supervisord.conf", ";", "uvicorn", "--port", "8680", "bot:app"]
-CMD /usr/bin/supervisord -c /etc/supervisor/supervisord.conf ; uvicorn --port 8680 bot:app
+CMD /usr/bin/supervisord -c /etc/supervisor/supervisord.conf ; uvicorn --host 0.0.0.0 --port 8680 bot:app
