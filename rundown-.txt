@@ -1,0 +1,20 @@
+
+---
+dev and test
+    start-dev.bat
+        edit koyeb_nb/plugins
+
+---
+koyeb
+    rsync-to-acone3-koyeb-nb2.bat
+
+    @acone3
+    in koyeb-nb2
+        docker build -t koyeb-nb -f Dockerfile.gocqhttp-nb2 .  # run-docker-build.sh
+
+        docker build -t xxx/koyeb-nb -f Dockerfile.gocqhttp-nb2 .  # run-docker-build.sh
+
+    @acone3 upload to hub.docker.com
+        export DOCKERID=xxx  # hub.docker.com
+        docker tag koyeb-nb:latest $DOCKER_ID/koyeb-nb:latest
+        docker push $DOCKER_ID/koyeb-nb:latest
