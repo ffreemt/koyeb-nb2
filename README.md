@@ -1,4 +1,6 @@
 # koyeb-nb2
+[![nonebot2](https://img.shields.io/static/v1?label=nonebot&message=v2.0.0a16&color=green)](https://v2.nonebot.dev/)[![cqhttp](https://img.shields.io/static/v1?label=driver&message=cqhttp&color=green)](https://v2.nonebot.dev/guide/cqhttp-guide.html)[![python](https://img.shields.io/static/v1?label=python+&message=3.7%2B&color=blue)](https://img.shields.io/static/v1?label=python+&message=3.7%2B&color=blue)[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
 Nonebot2 up and running with ease
 
 <!--Dockerfile.gocqhttp-nb2 for go-cqhttp-940fix5 and nonebot2-->
