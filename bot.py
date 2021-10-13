@@ -27,7 +27,7 @@ config = {
     "host": "0.0.0.0",
     "port": 8680,
     "debug": True,
-    "nickname": {"elf",},
+    "nickname": {"elf", },
     "apscheduler_autostart": True,
     "apscheduler.timezone": "Asia/Shanghai",
     # "fastapi_docs_url": "docs",
@@ -38,7 +38,7 @@ config = {
 }
 
 nonebot.init(**config)
-import koyeb_nb2.nb2chan  # pylint: disbale=
+import koyeb_nb2.nb2chan  # pylint: disable=wrong-import-position, unused-import  # noqa
 
 driver = nonebot.get_driver()
 
@@ -58,6 +58,7 @@ nonebot.load_plugins("koyeb_nb2/plugins")
 # nonebot.load_plugin("nonebot_plugin_autohelp")
 
 # nonebot.load_plugin("koyeb_nb2.plugins.autohelp")
+import koyeb_nb2.plugins._autohelp  # pylint: disable=wrong-import-position, unused-import  # noqa
 
 app = nonebot.get_asgi()
 

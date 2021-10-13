@@ -95,12 +95,12 @@ async def handle(bot: Bot, event: Event, state: dict):
     det = False
     if args is not None:
         det = any(map(lambda x: x in args.params, ["details", "detail", "详细"]))
-        
+
     try:
         args_details = args.details
     except AttributeError:  # args.details not in namespace
         args_details = False
-    
+
     if args_details or det:
         try:
             plugin_info = fetch_plugin_info(details=True)

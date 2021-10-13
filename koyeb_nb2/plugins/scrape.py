@@ -3,14 +3,14 @@
 For more info on usage:
 /scrape -h
 """
-from typing import Type, Union
+from typing import Type
 import asyncio
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import textwrap
 import logzero
 from logzero import logger
 
-import nonebot
+# import nonebot
 from nonebot import on_command
 from nonebot.matcher import Matcher
 

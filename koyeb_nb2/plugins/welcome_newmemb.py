@@ -96,7 +96,7 @@ async def handle(bot: Bot, event: GroupIncreaseNoticeEvent, state: T_State):
     try:
         nm_name = (
             jpmatch("$.card", group_member_info)[0]
-            or jpmatch("$.nickname", group_member_info)[0]
+            or jpmatch("$.nickname", group_member_info)[0]  # noqa
         )
     except Exception as e:
         logger.error(e)

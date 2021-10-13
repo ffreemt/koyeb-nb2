@@ -1,5 +1,5 @@
 """Parse command according to a given argparse.ArgumentParser."""
-from typing import Optional, Tuple
+from typing import Tuple
 
 from argparse import ArgumentParser, Namespace, ArgumentDefaultsHelpFormatter
 import shlex

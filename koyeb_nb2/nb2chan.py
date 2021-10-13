@@ -46,8 +46,6 @@ from typing import List, Union
 
 from pydantic import BaseSettings, Field, validator
 
-from logzero import logger
-
 
 class Settings(BaseSettings):
     """Preset default valid tokens."""
