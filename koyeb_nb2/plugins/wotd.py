@@ -42,7 +42,7 @@ from aiocqhttp.exceptions import Error as CQHttpError
 
 from koyeb_nb2.free_dict_wotd import free_dict_wotd
 
-scheduler = require("nonebot_plugin_apscheduler").scheduler
+scheduler = require("nonebot_plugin_apscheduler").scheduler  # type: ignore
 logzero.loglevel(10)
 
 GRP_LIST = [
@@ -57,8 +57,8 @@ GRP_LIST0 = [
 
 # @nonebot.scheduler.scheduled_job('cron', hour='*', minute='14,29,44,59', second='59')
 # @nonebot.scheduler.scheduled_job('cron', hour='*', minute='0,15,30,45')
-# @scheduler.scheduled_job('cron', minute='*/1', id='run_quarterly')
-@scheduler.scheduled_job("cron", minute="*/15", id="run_quarterly")
+# @scheduler.scheduled_job('cron', minute='*/15', id='run_quarterly')
+@scheduler.scheduled_job("cron", minute="*/45", id="run-3-quarterly")
 async def _():
     """Send wotd."""
     now = datetime.now(pytz.timezone("Asia/Shanghai"))
@@ -80,10 +80,11 @@ async def _():
     except Exception as exc:
         texts = str(exc), ""
 
+    # fmt: off
     message = (
-        "**word & idiom of the day (http://www.thefreedictionary.com )**\n\n"
-        + "\n\n".join(texts)
+        "**word & idiom of the day (http://www.thefreedictionary.com )**\n\n" + "\n\n".join(texts)
     )
+    # fmt: on
     logger.debug("\t\t >==> now: %s", message[:20])
 
     bots = [*nonebot.get_bots().values()]

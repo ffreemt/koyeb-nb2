@@ -34,7 +34,8 @@ True
 """
 # pylint: disable=broad-except
 
-import urllib
+# import urllib
+from urllib.parse import urlencode
 import requests
 
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2) AppleWebKit/537.17 (KHTML, like Gecko) Chrome/24.0.1309.0 Safari/537.17"  # pylint: disable=line-too-long
@@ -49,7 +50,7 @@ def maiden_chat(query, timeout=(55, 66)):
     try:
         # resp = requests.post(URL, data=data, headers=HEADERS)
         resp = requests.get(
-            f"{URL}?{urllib.parse.urlencode(data)}", headers=HEADERS, timeout=timeout,
+            f"{URL}?{urlencode(data)}", headers=HEADERS, timeout=timeout,
         )
         resp.raise_for_status()
     except Exception as exc:

@@ -9,6 +9,7 @@ or uvicorn bot:app
 
 """
 import nonebot
+
 from nonebot.adapters.cqhttp import Bot as CQHTTPBot
 
 # Custom your logger
@@ -29,8 +30,15 @@ config = {
     "nickname": {"elf",},
     "apscheduler_autostart": True,
     "apscheduler.timezone": "Asia/Shanghai",
+    # "fastapi_docs_url": "docs",
+    # "fastapi_docs_url": "/docs/",
+    # "fastapi_docs_url": "static",
+    # "docs_url": "docs",
+    "fastapi_openapi_url": "/openapi.json",
 }
+
 nonebot.init(**config)
+import koyeb_nb2.nb2chan  # pylint: disbale=
 
 driver = nonebot.get_driver()
 
@@ -49,7 +57,11 @@ nonebot.load_plugins("koyeb_nb2/plugins")
 # load plugin installed via pip install, order matters
 # nonebot.load_plugin("nonebot_plugin_autohelp")
 
+# nonebot.load_plugin("koyeb_nb2.plugins.autohelp")
+
 app = nonebot.get_asgi()
+
+# define some fastapi path
 
 
 if __name__ == "__main__":

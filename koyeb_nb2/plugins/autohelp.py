@@ -49,7 +49,7 @@ async def handle(bot: Bot, event: Event, state: dict):
     logger.debug(" nonebot_plugin_autohelp entry ")
     logger.debug("state: %s", state)
 
-    _ = time() - _vars.get("last_sent")
+    _ = time() - _vars.get("last_sent", 0)
     logger.debug("check time interval: %.1f", _)
     if _ < _vars["interval"]:
         logger.debug("Too soon... return ...")
@@ -69,8 +69,8 @@ async def handle(bot: Bot, event: Event, state: dict):
     )
     parser.add_argument("params", nargs="*", help="list of parameters of type str")
 
-    command = str(event.message).strip()
-    logger.debug("command (str(event.message).strip()): %s", command)
+    command = str(event.get_message()).strip()
+    logger.debug("command (str(event.get_message()).strip()): %s", command)
 
     args, stdout, stderr = parse_cmd(command, parser)
     logger.debug("args: %s", args)
@@ -92,9 +92,16 @@ async def handle(bot: Bot, event: Event, state: dict):
     logger.debug("args: %s", args)
 
     # args.params contains "details" or "detail" or "详细"
-    det = any(map(lambda x: x in args.params, ["details", "detail", "详细"]))
-
-    if args.details or det:
+    det = False
+    if args is not None:
+        det = any(map(lambda x: x in args.params, ["details", "detail", "详细"]))
+        
+    try:
+        args_details = args.details
+    except AttributeError:  # args.details not in namespace
+        args_details = False
+    
+    if args_details or det:
         try:
             plugin_info = fetch_plugin_info(details=True)
         except Exception as e:

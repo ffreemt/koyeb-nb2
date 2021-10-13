@@ -3,6 +3,7 @@
 For more info on usage:
 /scrape -h
 """
+from typing import Type, Union
 import asyncio
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import textwrap
@@ -11,6 +12,7 @@ from logzero import logger
 
 import nonebot
 from nonebot import on_command
+from nonebot.matcher import Matcher
 
 # from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
@@ -61,7 +63,8 @@ async def handle(bot: Bot, event: Event, state: dict):
         "--ignore_links", action="store_false", help="ignore links in text"
     )
 
-    command = str(event.message).strip()
+    # command = str(event.message).strip()
+    command = str(event.get_message()).strip()
 
     args, stdout, stderr = parse_cmd(command, parser)
     logger.debug("args: %s", args)
@@ -102,7 +105,7 @@ async def receive(bot: Bot, event: Event, state: dict):
     """Process when handle exits with scrape.send."""
     logger.debug("state: %s", state)
     try:
-        url = str(event.message).strip()
+        url = str(event.get_message()).strip()
         logger.debug("url: %s", url)
     except Exception as e:
         logger.error(e)
@@ -136,7 +139,9 @@ async def receive(bot: Bot, event: Event, state: dict):
         # await scrape.finish(f"Errors: {e}")
 
 
-async def send_text(text: str, matcher: nonebot.matcher.Matcher, width: int = 70):
+# pyright complains without MatcherMeta
+# async def send_text(text: str, matcher: Union[Matcher, MatcherMeta], width: int = 70):
+async def send_text(text: str, matcher: Type[Matcher], width: int = 70):
     """Send text via matcher."""
     text_list = textwrap.wrap(
         text,
