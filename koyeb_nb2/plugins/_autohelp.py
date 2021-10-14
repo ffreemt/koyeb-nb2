@@ -23,7 +23,7 @@ _vars = dict(last_sent=0.0, interval=30)
 patt = re.compile(r"^[/!#]?\s*(?:help|menu|帮助|菜单|caidan|info)|[/#]i", re.I)
 
 logzero.loglevel(10)
-on_message = nonebot.on_message(priority=1)
+on_message = nonebot.on_message(priority=10, block=True)
 config = nonebot.Config()
 
 # nonebot.load_from_toml("pyproject.toml")

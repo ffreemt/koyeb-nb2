@@ -1,4 +1,5 @@
 """Send news in image per request."""
+# pylint: disable=invalid-name, unused-argument
 from pathlib import Path
 
 # import io
@@ -11,6 +12,8 @@ from nonebot import on_command
 # from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 from nonebot.adapters.cqhttp import MessageSegment
+from nonebot.exception import FinishedException, ActionFailed
+from nonebot.adapters.cqhttp.exception import NetworkError
 
 # from koyeb_nb2.fetch_zaobao_news_image import fetch_zaobao_news_image
 from koyeb_nb2.get_file_loc import get_file_loc
@@ -40,7 +43,16 @@ async def handle(bot: Bot, event: Event, state: dict):
 
     if not Path(file_loc):
         logger.warning(" %s does not exist.", file_loc)
-        await news.finish(" %s does not exist." % file_loc)
+        await news.finish(f" {file_loc} does not exist.")
         return None
 
-    await news.finish(MessageSegment.image(f"file:///{file_loc}"))
+    try:
+        await news.finish(MessageSegment.image(f"file:///{file_loc}"))
+    except FinishedException:  # (FinishedException, ActionFailed):
+        # sys.exc_clear()
+        ...
+    except NetworkError as e:
+        logger.error(e)
+    except Exception as e:
+        # nonebot.adapters.cqhttp.exception.NetworkError
+        logger.error(e)
