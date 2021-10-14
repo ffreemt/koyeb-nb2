@@ -4,7 +4,8 @@ from pathlib import Path
 
 # import io
 # from time import time
-import arrow
+# import arrow
+import pendulum
 import logzero
 from logzero import logger
 from nonebot import on_command
@@ -19,14 +20,16 @@ from nonebot.adapters.cqhttp.exception import NetworkError
 from koyeb_nb2.get_file_loc import get_file_loc
 
 logzero.loglevel(10)
-news = on_command("news", aliases={"xinwen", "新闻", "无聊"}, priority=4,)
+news = on_command("news", aliases={"xinwen", "新闻", "无聊"}, priority=4, block=False)
 
 
 @news.handle()
 async def handle(bot: Bot, event: Event, state: dict):
     """Handle news requests."""
     # day = round(time() // (24 * 3600))
-    day = int(arrow.utcnow().to("Asia/Shanghai").format("YYYYMMDD"))
+    # day = int(arrow.utcnow().to("Asia/Shanghai").format("YYYYMMDD"))
+
+    day = int(pendulum.now().in_timezone("Asia/Shanghai").format("YYYYMMDD"))
 
     logger.debug("state: %s", state)
 

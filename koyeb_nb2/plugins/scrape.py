@@ -27,7 +27,10 @@ logger.debug("debug test: %s", __file__)
 logger.info("%s loaded", __file__)
 
 scrape = on_command(
-    "scrape", aliases={"爬", "fetch", "crawl", }, priority=2,
+    "scrape",
+    aliases={"爬", "fetch", "crawl", },
+    priority=2,
+    block=False,
 )  # shell_like=True)
 
 _vars = {}  # store args in handle() for possible use in receive()

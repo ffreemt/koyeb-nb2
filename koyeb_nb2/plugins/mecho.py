@@ -6,7 +6,7 @@ from nonebot.adapters.cqhttp import Bot, MessageEvent
 from logzero import logger
 
 # echo = on_command("echo", to_me())
-mecho = on_command("mecho", aliases={"ping", "ryt", "在不", "p"}, priority=1,)
+mecho = on_command("mecho", aliases={"ping", "ryt", "在不", "p"}, priority=1, block=False)
 node_ = node()
 
 

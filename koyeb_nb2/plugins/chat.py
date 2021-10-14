@@ -24,7 +24,7 @@ logzero.loglevel(10)
 # test = on_message()
 # test = nonebot.on_command("chat", aliases={"xianliao", "闲聊"}, priority=5,)
 
-on_message = nonebot.on_message(priority=5)
+on_message = nonebot.on_message(priority=5, block=False)
 
 
 @on_message.handle()
