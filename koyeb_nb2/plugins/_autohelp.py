@@ -5,6 +5,9 @@ For more info on usage:
 """
 # pylint: disable=invalid-name
 # import asyncio
+from typing import Optional
+from nonebot.typing import T_State
+
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
 import re
@@ -23,7 +26,7 @@ _vars = dict(last_sent=0.0, interval=30)
 patt = re.compile(r"^[/!#]?\s*(?:help|menu|帮助|菜单|caidan|info)|[/#]i", re.I)
 
 logzero.loglevel(10)
-on_message = nonebot.on_message(priority=10, block=True)
+on_message = nonebot.on_message(priority=10, block=False)
 config = nonebot.Config()
 
 # nonebot.load_from_toml("pyproject.toml")
@@ -44,7 +47,7 @@ logger.info("Loaded plugins: %s", [elm.name for elm in nonebot.get_loaded_plugin
 
 
 @on_message.handle()
-async def handle(bot: Bot, event: Event, state: dict):
+async def handle(bot: Bot, event: Event, state: Optional[T_State]):
     """Handle messages."""
     logger.debug(" nonebot_plugin_autohelp entry ")
     logger.debug("state: %s", state)

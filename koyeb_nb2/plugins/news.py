@@ -12,7 +12,7 @@ from nonebot import on_command
 # from nonebot.rule import to_me
 from nonebot.adapters.cqhttp import Bot, Event
 from nonebot.adapters.cqhttp import MessageSegment
-from nonebot.exception import FinishedException, ActionFailed
+from nonebot.exception import FinishedException  # , ActionFailed
 from nonebot.adapters.cqhttp.exception import NetworkError
 
 # from koyeb_nb2.fetch_zaobao_news_image import fetch_zaobao_news_image

@@ -8,8 +8,15 @@ RUN python3 -m venv venv
 ENV VIRTUAL_ENV=/koyeb-nb2/venv
 ENV PATH="$VIRTUAL_ENV/bin:$PATH"
 
-COPY requirements.txt .
-RUN /koyeb-nb2/venv/bin/python3 -m pip install --upgrade pip && pip install -r requirements.txt
+# COPY requirements.txt .
+# RUN /koyeb-nb2/venv/bin/python3 -m pip install --upgrade pip && pip install -r requirements.txt
+
+# try poetry
+COPY poetry.lock pyproject.toml ./
+RUN /koyeb-nb2/venv/bin/python3 -m pip install --upgrade pip \
+&& pip install poetry \
+&& poetry config virtualenvs.create false \
+&& poetry install --no-dev --no-interaction --no-ansi
 
 # Stage 2
 # FROM python:3-slim-buster AS runner
