@@ -4,7 +4,7 @@
 ## 部署到 okteto
 ```bash
 git clone https://github.com/ffreemt/koyeb-nb2
-cd koyeb-nb2  # config.hjson device.json 拷到 go-cqhttp-940fix5 或在该目录里就地生成
+cd koyeb-nb2  # config.hjson device.json 拷到 go-cqhttp-940fix5 或在该目录里就地生成，config.hjson的reverse_url端口设为8680, reverse_url: ws://127.0.0.1:8680/cqhttp/ws
 okteto stack deploy - build  # 先登入：okteto login
 ```
 
