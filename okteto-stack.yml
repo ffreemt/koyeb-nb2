@@ -1,0 +1,12 @@
+name: nb2chan
+services:
+  nb2chan:
+    public: true
+    image: dattw/koyeb-nb:nb2chan
+    build: .
+    replicas: 1
+    ports:
+      - 8680
+    resources:
+      cpu: 1000m
+      memory: 3Gi
