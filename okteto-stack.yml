@@ -1,8 +1,9 @@
+# okteto login && okteto namespace && okteto stack deploy - build
 name: nb2chan
 services:
   nb2chan:
     public: true
-    image: dattw/koyeb-nb:nb2chan
+    image: nb2chan-dattw/koyeb-nb:nb2chan
     build: .
     replicas: 1
     ports:
