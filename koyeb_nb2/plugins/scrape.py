@@ -90,7 +90,7 @@ async def handle(bot: Bot, event: Event, state: dict):
     except Exception as e:
         logger.error(e)
         await scrape.finish(
-            f"Errors: {e}. Perhaps the url is incorrect or it cant be scraped. Give amended url or another url."
+            f"Errors: {e}. Perhaps the url is incorrect or it cant be scr aped/crawled. Give amended url or another url."
         )
         return None
 
@@ -129,7 +129,7 @@ async def receive(bot: Bot, event: Event, state: dict):
     except Exception as e:
         logger.error(e)
         await scrape.send(
-            f"Errors: {e}. Perhaps the url is incorrect or it cant be scraped. Give amended url or another url."
+            f"Errors: {e}. Perhaps the url is incorrect or it cant be scr aped/crawled. Give amended url or another url."
         )
         return None
 
