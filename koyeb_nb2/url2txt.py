@@ -23,6 +23,7 @@ def url2txt(
     remove: bool = False,
     show_url: bool = True,
     ignore_links: bool = True,
+    follow_redirects: bool = True,
 ) -> str:
     # fmt: on
     """Fetch text from url.
@@ -52,7 +53,11 @@ def url2txt(
         raise Exception("Invalid url: %s" % url)
 
     try:
-        resp = httpx.get(url, timeout=30)
+        resp = httpx.get(
+            url,
+            timeout=30,
+            follow_redirects=follow_redirects,
+            )
         resp.raise_for_status()
     except Exception as exc:
         logger.error(exc)

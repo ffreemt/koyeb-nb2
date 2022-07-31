@@ -1,0 +1,33 @@
+[tool.poetry]
+name = "koyeb-nb2"
+version = "0.1.0"
+description = ""
+authors = ["ffreemt"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "koyeb_nb2"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+logzero = "^1.7.0"
+nonebot2 = "^2.0.0-beta.2"
+nonebot-adapter-onebot = "^2.0.0-beta.1"
+httpx = "^0.22.0"
+joblib = "^1.1.0"
+html2text = "^2020.1.16"
+pendulum = "^2.1.2"
+jsonpath-ng = "^1.5.3"
+readability = "^0.3.1"
+requests = "^2.27.1"
+aiml = "^0.9.2"
+pyquery = "^1.4.3"
+nonebot-plugin-guess = {git = "https://github.com/ffreemt/nonebot-plugin-guess-game"}
+nb-cli = "^0.6.6"
+
+# [tool.poetry.group.dev.dependencies]
+[tool.poetry.dev-dependencies]
+pytest = "^7.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

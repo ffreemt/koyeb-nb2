@@ -1,43 +1,32 @@
 [tool.poetry]
 name = "koyeb-nb2"
 version = "0.1.0"
-description = "koyeb-nb2"
-authors = []
-readme = "README.md"
+description = ""
+authors = ["ffreemt"]
+license = "MIT"
 
 [tool.poetry.dependencies]
-# python = "^3.7"
-python = "^3.7.3"
-nonebot2 = "^2.0.0-alpha.16"
-nonebot-plugin-guess = "^0.1.5"
-chardet = "^4.0.0"
-Jinja2 = "^3.0.1"
-nonebot-adapter-cqhttp = "^2.0.0-alpha.13"
-aiocqhttp = "^1.4.1"
-readability-lxml = "^0.8.1"
+python = "^3.8"
+logzero = "^1.7.0"
+nonebot2 = "^2.0.0-beta.4"
+nonebot-adapter-onebot = "^2.1.1"
+httpx = "^0.23.0"
+joblib = "^1.1.0"
 html2text = "^2020.1.16"
-jsonpath-ng = "^1.5.3"
-nonebot-plugin-apscheduler = "^0.1.2"
-pyquery = "^1.4.3"
-joblib = "^1.0.1"
-pdir2 = "^0.3.2"
-httpx = "^0.19.0"
-fasttext = "^0.9.2"
-fastlid = "^0.1.7"
-python-aiml = "^0.9.3"
 pendulum = "^2.1.2"
+jsonpath-ng = "^1.5.3"
+requests = "^2.28.1"
+aiml = "^0.9.2"
+pyquery = "^1.4.3"
+setuptools = "^63.2.0"
+wheel = "^0.37.1"
+readability-lxml = "^0.8.1"
 
 [tool.poetry.dev-dependencies]
-nonebot-test = "^0.1.0"
-poethepoet = "^0.10.0"
-respx = "~=0.16.0"
-pytest = "^6.2.4"
-pytest-asyncio = "^0.15.1"
-
-[nonebot.plugins]
-plugins = []
-plugin_dirs = ["koyeb_nb2/plugins"]
+pytest = "^7.1.2"
+respx = "^0.19.2"
+pytest-asyncio = "^0.19.0"
 
 [build-system]
-requires = ["poetry>=0.12"]
-build-backend = "poetry.masonry.api"
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

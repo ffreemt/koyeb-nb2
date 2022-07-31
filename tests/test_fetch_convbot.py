@@ -12,7 +12,7 @@ from koyeb_nb2.fetch_convbot import fetch_convbot
 async def test_fetch_convbot():
     """Test test_fetch_convbot."""
     res = await fetch_convbot("Hello")
-    assert len(res) > 2
+    assert len(res) >= 2
 
 
 # @pytest.mark.xfail  # OK
@@ -23,7 +23,10 @@ async def test_fetch_convbot():
 @pytest.mark.asyncio
 async def test_fetch_convbot_with_exc():
     """Test fetch_convbot_with_exc."""
-    my_route = respx.post("https://convbot-yucongo.koyeb.app/text/").mock(
+    url = "https://convbot-yucongo.koyeb.app/text/"
+    url = "https://hf.space/embed/mikeee/convbot/+/api/predict"
+
+    my_route = respx.post(url).mock(
         return_value=Response(204)
     )
 
@@ -36,8 +39,12 @@ async def test_fetch_convbot_with_exc():
 @pytest.mark.asyncio
 async def test_fetch_convbot_mock_hello():
     """Test fetch_convbot_mock_hello."""
-    response = Response(status_code=200, json={"result": {"resp": "Hello yourself"}})
-    my_route = respx.post("https://convbot-yucongo.koyeb.app/text/").mock(
+    url = "https://convbot-yucongo.koyeb.app/text/"
+    url = "https://hf.space/embed/mikeee/convbot/+/api/predict"
+
+    # response = Response(status_code=200, json={"result": {"resp": "Hello yourself"}})
+    response = Response(status_code=200, json={"data": ["Hello yourself"]})
+    my_route = respx.post(url).mock(
         return_value=response
     )
 
