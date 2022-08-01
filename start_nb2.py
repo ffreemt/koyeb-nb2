@@ -1,12 +1,20 @@
 """Start gocq and nb2 in one go."""
-from multiprocessing import Process
+import os
 import subprocess as sp
+import time
+from multiprocessing import Process
 from shlex import split
 from time import sleep
 
 from logzero import logger
 
 from koyeb_nb2.start_gocq import start_gocq
+
+os.environ["TZ"] = "Asia/Shanghai"
+try:
+    time.tzset()
+except Exception:
+    ...  # only works in Linux
 
 
 def main():
@@ -31,7 +39,11 @@ def main():
                 logger.debug(out.decode("utf8"))
                 # """
                 # err = proc.stderr.read()
-                out = proc.stdout.read()
+                if proc.stdout is not None:
+                    out = proc.stdout.read()
+                else:
+                    continue
+
                 # logger.error(err.decode("utf8"))
                 # logger.error(err)
                 logger.error(out)
