@@ -1,7 +1,8 @@
 import nonebot
 from nonebot.adapters.onebot.v11 import Adapter
 
-nonebot.init(port=80)
+port = 8680
+nonebot.init(port=port)
 nonebot.get_driver().register_adapter(Adapter)
 
 app = nonebot.get_asgi()
