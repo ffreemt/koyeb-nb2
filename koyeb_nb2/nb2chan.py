@@ -39,7 +39,7 @@ import logzero
 from logzero import logger
 
 import nonebot
-from aiocqhttp.exceptions import Error as CQHttpError
+# from aiocqhttp.exceptions import Error as CQHttpError
 
 # from .config import Settings
 from typing import List, Union
@@ -158,6 +158,9 @@ async def nb2chan(
     # send Token via HEADERS
     http -v "http://.../nb2chan/?qq=123&msg=hello world" "token: DEMO_TOKEN"
     curl "http://.../nb2chan/?qq=123&msg=hello world" -H "token: DEMO_TOKEN"
+    curl "http://127.0.0.1:8680/nb2chan/?qq=123&msg=hello world" -H "token: DEMO_TOKEN"
+
+    curl "127.0.0.1:8680/nb2chan/?qq=41947782&msg=hello" -H "token: DEMO_TOKEN"
     ```
     """
     try:
@@ -184,11 +187,6 @@ async def nb2chan(
         await bot.send_private_msg(user_id=f"{qq}", message=msg)
         _ = pendulum.now().in_timezone("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss z")
         res = {"success": f"'{msg}' sent to {qq} {_}"}
-    except CQHttpError as exc:
-        logger.error(exc)
-        # logger.exception(exc)
-        msg = f"{node} exc: {exc}, (大佬这个qq号[{qq}]加机器人好友了吗？ 没加的话用不了nb2酱。)"
-        res = {"error": msg}
     except Exception as exc:
         logger.error(exc)
         # logger.exception(exc)
