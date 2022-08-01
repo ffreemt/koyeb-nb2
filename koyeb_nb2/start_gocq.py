@@ -24,7 +24,7 @@ def start_gocq(wd: str = "go-cqhttp"):
     if platform().lower().startswith("windows"):
         cmd = "go-cqhttp_windows_amd64.exe"
     else:
-        cmd = "go-cqhttp"
+        cmd = "./go-cqhttp"
     logger.debug("cmd: %s", cmd)
 
     assert Path(cmd).exists(), f"File {cmd} does not exist."
