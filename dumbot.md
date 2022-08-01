@@ -23,23 +23,28 @@ NB: plugins 目录里的插件尚未完成迁移。 目前只有 `nb2chan` 可�
 Public Git repository 框里拷入 https://github.com/ffreemt/koyeb-nb2 点击`Continue`。
 
 选定：
+
 Name: 自选
+
 Environment: python3
+
 Region： 自选
-Build Command: poetry install
-Start Command: poetry run python start_nb2.py
+
+Build Command: ``poetry install``
+
+Start Command: ``poetry run python start_nb2.py``
+
 点击`Advanced`
 
-点击`Add Secret File`
-File Name: config.yml
-拷入 config.yml 内容
-点击 Save
+点击`Add Secret File`  
+    File Name: config.yml  
+    拷入 config.yml 内容  
+    点击 Save  
 
-
-点击`Add Secret File`
-File Name: device.json
-拷入 device.json 内容
-点击Save
+点击`Add Secret File`  
+    File Name: device.json  
+    拷入 device.json 内容  
+    点击Save  
 
 点击蓝色`Create Web Service`启动。 等待……检查日志
 
