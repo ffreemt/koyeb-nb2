@@ -1,5 +1,47 @@
 # `dumbot`机器人
-[![nonebot2](https://img.shields.io/static/v1?label=nonebot&message=v2.0.0a16&color=green)](https://v2.nonebot.dev/)[![cqhttp](https://img.shields.io/static/v1?label=driver&message=cqhttp&color=green)](https://v2.nonebot.dev/guide/cqhttp-guide.html)[![python](https://img.shields.io/static/v1?label=python+&message=3.7%2B&color=blue)](https://img.shields.io/static/v1?label=python+&message=3.7%2B&color=blue)[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![nonebot2](https://img.shields.io/static/v1?label=nonebot&message=v2.0.0b4&color=green)](https://v2.nonebot.dev/)[![onebot](https://img.shields.io/static/v1?label=driver&message=onebot&color=green)](https://v2.nonebot.dev/guide/cqhttp-guide.html)[![python](https://img.shields.io/static/v1?label=python+&message=3.7%2B&color=blue)](https://img.shields.io/static/v1?label=python+&message=3.7%2B&color=blue)[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+## 本地部署
+```bash
+git clone https://github.com/ffreemt/koyeb-nb2
+cd koyeb-nb
+poetry install
+```
+将 `config.yml` 和 `device.json` 拷到 `go-cqhttp` 目录。 (或运行 go-cq (Windows10： go-cqhttp_windows_amd64.exe，Linux: go-cqhttp) 生成 有效`config.yml` 和 `device.json`。
+```
+cd koyeb-nb
+poetry shell
+python start_nb2.py
+```
+
+NB: plugins 目录里的插件尚未完成迁移。 目前只有 `nb2chan` 可用.
+
+## 部署到 [render.com](https://dashboard.render.com/)
+注册登录建立web服务
+[https://dashboard.render.com/select-repo?type=web](https://dashboard.render.com/select-repo?type=web)
+
+Public Git repository 框里拷入 https://github.com/ffreemt/koyeb-nb2 点击`Continue`。
+
+选定：
+Name: 自选
+Environment: python3
+Region： 自选
+Build Command: poetry install
+Start Command: poetry run python start_nb2.py
+点击`Advanced`
+
+点击`Add Secret File`
+File Name: config.yml
+拷入 config.yml 内容
+点击Save
+
+
+点击`Add Secret File`
+File Name: device.json
+拷入 device.json 内容
+点击Save
+
+点击蓝色`Create Web Service`
 
 ## 部署到 okteto
 ```bash
