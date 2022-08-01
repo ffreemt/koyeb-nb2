@@ -4,12 +4,12 @@
 ## 本地部署
 ```bash
 git clone https://github.com/ffreemt/koyeb-nb2
-cd koyeb-nb
+cd koyeb-nb2
 poetry install
 ```
 将 `config.yml` 和 `device.json` 拷到 `go-cqhttp` 目录。 (或运行 go-cq (Windows10： go-cqhttp_windows_amd64.exe，Linux: go-cqhttp) 生成 有效`config.yml` 和 `device.json`。
 ```
-cd koyeb-nb
+cd koyeb-nb2
 poetry shell
 python start_nb2.py
 ```
