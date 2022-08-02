@@ -26,7 +26,7 @@ node = platform.node()
 # override built-in echo
 # @echo.handle()
 
-ping = on_command("ping", aliases={"echo",}, priority=1, block=False)
+ping = on_command("ping", aliases={"p",}, priority=1, block=False)
 
 
 @ping.handle()

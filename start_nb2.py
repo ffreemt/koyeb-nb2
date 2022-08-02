@@ -29,9 +29,9 @@ def main():
         with sp.Popen(
             split(cmd),
             # shell=True,
-            stdout=-1,
-            # stderr=-1,
-            stderr=sp.STDOUT,
+            # stdout=sp.PIPE,
+            # stderr=sp.STDOUT,
+            stderr=sp.PIPE,
             text=True,
         ) as proc:
             while proc.poll() is None:
@@ -40,15 +40,17 @@ def main():
                 logger.debug(out.decode("utf8"))
                 # """
                 # err = proc.stderr.read()
-                if proc.stdout is not None:
-                    out = proc.stdout.read()
+                # if proc.stdout is not None:
+                if proc.stderr is not None:
+                    # out = proc.stdout.read()
+                    out = proc.stderr.read()
                 else:
                     continue
 
                 # logger.error(err.decode("utf8"))
                 # logger.error(err)
                 logger.error(out)
-                sleep(1)
+                # sleep(.1)
         if proc.returncode != 0:
             raise sp.CalledProcessError(proc.returncode, proc.args)
     except Exception as exc:
