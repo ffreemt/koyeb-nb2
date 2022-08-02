@@ -15,8 +15,7 @@ from nonebot.rule import to_me
 
 # from koyeb_nb2.nb2chan import nb2chan
 
-# port = 8680  # .env.dev
-port = 80  # .env.dev
+port = 8680  # .env.dev
 nonebot.init(port=port)
 nonebot.get_driver().register_adapter(Adapter)
 
