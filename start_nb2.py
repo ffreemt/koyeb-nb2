@@ -22,7 +22,7 @@ def main():
     gocq = Process(target=start_gocq)
     gocq.start()
 
-    cmd = "nb run -f bot_minimal.py"
+    cmd = "poetry run nb run -f bot_minimal.py"
     logger.debug("cmd: %s", cmd)
     try:
         with sp.Popen(
