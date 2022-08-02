@@ -142,6 +142,10 @@ async def get_api_key(
         )
 
 
+@app.get("/")
+async def landing():
+    """Define landing page."""
+    return "Hello nb2chan!"
 @app.get("/nb2chan/")
 async def nb2chan(
     token: str = Depends(get_api_key),
@@ -159,8 +163,6 @@ async def nb2chan(
     http -v "http://.../nb2chan/?qq=123&msg=hello world" "token: DEMO_TOKEN"
     curl "http://.../nb2chan/?qq=123&msg=hello world" -H "token: DEMO_TOKEN"
     curl "http://127.0.0.1:8680/nb2chan/?qq=123&msg=hello world" -H "token: DEMO_TOKEN"
-
-    curl "127.0.0.1:8680/nb2chan/?qq=41947782&msg=hello" -H "token: DEMO_TOKEN"
     ```
     """
     try:

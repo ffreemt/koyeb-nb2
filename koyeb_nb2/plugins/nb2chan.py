@@ -39,9 +39,59 @@ import logzero
 from logzero import logger
 
 import nonebot
-from aiocqhttp.exceptions import Error as CQHttpError
+# from aiocqhttp.exceptions import Error as CQHttpError
 
-from .config import Settings
+# from .config import Settings
+from typing import List, Union
+
+from pydantic import BaseSettings, Field, validator
+
+
+class Settings(BaseSettings):
+    """Preset default valid tokens."""
+
+    token_list: List[Union[str, int]] = Field(
+        default_factory=lambda: ["DEMO_TOKEN", "SECRET_TOKEN"]
+    )
+
+    @validator("token_list")
+    def validate_namelist(cls, v):
+        res = []
+        for elm in v:
+            try:
+                # may use numerbers
+                elm = str(elm).strip()
+            except Exception as exc:
+                logger.error(exc)
+                raise
+
+            _ = """
+            if len(elm) < 1:
+                raise ValueError(
+                    "Empty token not allowed"
+                )
+            """
+
+            if len(elm) == 0:
+                logger.warning(
+                    "This entry [%s] is empty: probably not what you want, but we let it pass.",
+                    elm,
+                )
+
+            res.append(elm)
+
+        return res
+
+    class Config:  # pylint: disable=too-few-public-methods
+        """Config."""
+
+        env_prefix = "nb2chan_"
+        # extra = "allow"
+        env_file = ".env.nb2chan"
+        env_file_encoding = "utf-8"
+
+        logger.info("env_prefix: %s, env_file: %s", env_prefix, env_file)
+
 
 settings_nb2chan = Settings()
 
@@ -114,6 +164,7 @@ async def nb2chan(
     # send Token via HEADERS
     http -v "http://.../nb2chan/?qq=123&msg=hello world" "token: DEMO_TOKEN"
     curl "http://.../nb2chan/?qq=123&msg=hello world" -H "token: DEMO_TOKEN"
+    curl "http://127.0.0.1:8680/nb2chan/?qq=123&msg=hello%20world" -H "token: DEMO_TOKEN"
     ```
     """
     try:
@@ -140,11 +191,6 @@ async def nb2chan(
         await bot.send_private_msg(user_id=f"{qq}", message=msg)
         _ = pendulum.now().in_timezone("Asia/Shanghai").format("YYYY-MM-DD HH:mm:ss z")
         res = {"success": f"'{msg}' sent to {qq} {_}"}
-    except CQHttpError as exc:
-        logger.error(exc)
-        # logger.exception(exc)
-        msg = f"{node} exc: {exc}, (大佬这个qq号[{qq}]加机器人好友了吗？ 没加的话用不了nb2酱。)"
-        res = {"error": msg}
     except Exception as exc:
         logger.error(exc)
         # logger.exception(exc)
