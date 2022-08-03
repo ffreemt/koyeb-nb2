@@ -16,6 +16,57 @@ python start_nb2.py
 
 NB: plugins 目录里的插件尚未完成迁移。 目前只有 `nb2chan` 可用.
 
+## 部署到`koyeb`(使用github库）
+
+准备`github`库(密码保护的`config-device.zip`文件)
+```bash
+git clone https://github.com/ffreemt/koyeb-nb2
+# 或 fork https://github.com/ffreemt/koyeb-nb2 再从自己的repo下载
+
+cd koyeb-nb2 && cd go-cqhttp
+
+# 将配置好的 config.yml 和 device.json 拷到当前目录或运行`go-cqhttp`生成有效`config.yml`和`device.json`
+
+set pw4unzip=选定密码
+zip -P %pw4unzip% config-device.zip config.yml device.json
+
+# 或 export pw4unzip=选定密码
+# zip -P $pw4unzip config-device.zip config.yml device.json
+
+# 删掉 `config.yml`和`device.json` 或 .gitignore 里设置
+# 例如 git ignore go-cqhttp/config.yml go-cqhttp/device.json
+
+# 上传到github库
+# git add . && git commit -m "Update" && git push
+```
+
+注册登录koyeb仪表板建立新服务 [https://app.koyeb.com/apps/new](https://app.koyeb.com/apps/new)
+```bash
+Configure your Service
+选GitHub
+
+Git repository
+repository          branch
+user/koyeb-nb2      master
+
+Application configuration
+Build command
+Run command    python start_nb2.py
+
+Environment variable
+Type            Key         Value
+Plaintext       pw4unzip    前面set pw4unzip的选定密码
+
+Ports
+8580
+
+选定service name
+
+点击 start service 或 update service
+
+```
+
+
 ## 部署到 [render.com](https://dashboard.render.com/)
 注册登录建立web服务
 [https://dashboard.render.com/select-repo?type=web](https://dashboard.render.com/select-repo?type=web)
@@ -36,15 +87,15 @@ Start Command: ``poetry run python start_nb2.py``
 
 点击`Advanced`
 
-点击`Add Secret File`  
-    File Name: config.yml  
-    拷入 config.yml 内容  
-    点击 Save  
+点击`Add Secret File`
+    File Name: config.yml
+    拷入 config.yml 内容
+    点击 Save
 
-点击`Add Secret File`  
-    File Name: device.json  
-    拷入 device.json 内容  
-    点击Save  
+点击`Add Secret File`
+    File Name: device.json
+    拷入 device.json 内容
+    点击Save
 
 点击蓝色`Create Web Service`启动。 等待……检查日志
 

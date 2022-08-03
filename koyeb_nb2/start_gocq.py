@@ -2,6 +2,7 @@
 
 Intended to be wrapped in multiprocess.Process.
 """
+# pylint: disable=invalid-name
 import os
 import subprocess as sp
 from pathlib import Path
@@ -9,6 +10,9 @@ from platform import platform
 from shlex import split
 
 from logzero import logger
+
+pw4unzip = os.environ.get("PW4UNZIP")
+assert pw4unzip, " env var PW4UNZIP not set"
 
 
 def start_gocq(wd: str = "go-cqhttp"):
@@ -21,10 +25,10 @@ def start_gocq(wd: str = "go-cqhttp"):
     os.chdir(wd)
     logger.info("Starting gocq in %s", os.getcwd())
 
-    logger.info("Unzipping (unizp -fo -P ) config-device.zip if exist (for koyeb) ")
-    if not Path("config-deice.zip").exists():
+    logger.info("Unzipping (unizp -o -P... ) config-device.zip if exist (for koyeb) ")
+    if not Path("config-device.zip").exists():
         try:
-            cmd = split("unzip -fo -P $PW4UNZIP config-deice.zip")
+            cmd = split(f"unzip -o -P {pw4unzip} config-device.zip")
             sp.check_call(cmd)
         except Exception as exc:
             logger.error(exc)
