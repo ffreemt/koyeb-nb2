@@ -26,7 +26,7 @@ def start_gocq(wd: str = "go-cqhttp"):
     logger.info("Starting gocq in %s", os.getcwd())
 
     logger.info("Unzipping (unizp -o -P... ) config-device.zip if exist (for koyeb) ")
-    if not Path("config-device.zip").exists():
+    if Path("config-device.zip").exists():
         try:
             cmd = split(f"unzip -o -P {pw4unzip} config-device.zip")
             sp.check_call(cmd)
@@ -63,8 +63,8 @@ def start_gocq(wd: str = "go-cqhttp"):
         logger.warning(" config.yml does not exist.")
         logger.info(" go-cqhttp wont run properly...")
 
-    if not Path("device.config").exists():
-        logger.warning(" device.config does not exist.")
+    if not Path("device.json").exists():
+        logger.warning(" device.json does not exist.")
         logger.info(" go-cqhttp wont run properly...")
 
     with sp.Popen(

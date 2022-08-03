@@ -46,6 +46,12 @@ from typing import List, Union
 
 from pydantic import BaseSettings, Field, validator
 
+_ = platform.node()
+if len(_) > 10:
+    node = f"{_[:7]}..."
+else:
+    node = _[:]
+
 
 class Settings(BaseSettings):
     """Preset default valid tokens."""
@@ -101,8 +107,6 @@ logzero.loglevel(10)
 app = nonebot.get_asgi()
 # app.fastapi_openapi_url = "/openapi.json"
 
-node = platform.node()
-
 # API_TOKEN = "SECRET_API_TOKEN"
 API_TOKENS = ["DEMO_TOKEN", "SECRET_API_TOKEN"]
 
@@ -145,7 +149,7 @@ async def get_api_key(
 @app.get("/")
 async def landing():
     """Define landing page."""
-    return "Hello nb2chan!"
+    return f"Hello nb2chan (from {node})!"
 
 
 @app.get("/nb2chan/")

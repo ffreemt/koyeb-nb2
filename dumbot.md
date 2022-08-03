@@ -27,11 +27,11 @@ cd koyeb-nb2 && cd go-cqhttp
 
 # 将配置好的 config.yml 和 device.json 拷到当前目录或运行`go-cqhttp`生成有效`config.yml`和`device.json`
 
-set pw4unzip=选定密码
-zip -P %pw4unzip% config-device.zip config.yml device.json
+set PW4UNZIP=选定密码
+zip -P %PW4UNZIP% config-device.zip config.yml device.json
 
-# 或 export pw4unzip=选定密码
-# zip -P $pw4unzip config-device.zip config.yml device.json
+# 或 export PW4UNZIP=选定密码
+# zip -P $PW4UNZIP config-device.zip config.yml device.json
 
 # 删掉 `config.yml`和`device.json` 或 .gitignore 里设置
 # 例如 git ignore go-cqhttp/config.yml go-cqhttp/device.json
@@ -55,7 +55,7 @@ Run command    python start_nb2.py
 
 Environment variable
 Type            Key         Value
-Plaintext       pw4unzip    前面set pw4unzip的选定密码
+Plaintext       PW4UNZIP    前面set PW4UNZIP的选定密码
 
 Ports
 8580
