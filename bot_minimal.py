@@ -69,9 +69,11 @@ async def handle(message: Message = CommandArg()):
 
 
 nonebot.load_plugin("koyeb_nb2.plugins.nb2chan")
+
 # nonebot.load_plugin("koyeb_nb2.plugins.autohelp")
 
 app = nonebot.get_asgi()
 
-nonebot.run(app="bot:app")
-# nonebot.run(app="__mp__main__:app")
+if __name__ == "__main__":
+    # nonebot.run("bot_minimal:app")
+    nonebot.run()
