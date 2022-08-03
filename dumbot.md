@@ -7,30 +7,43 @@ git clone https://github.com/ffreemt/koyeb-nb2
 cd koyeb-nb2
 poetry install
 ```
-将 `config.yml` 和 `device.json` 拷到 `go-cqhttp` 目录。 (或运行 go-cq (Windows10： go-cqhttp_windows_amd64.exe，Linux: go-cqhttp) 生成 有效`config.yml` 和 `device.json`。
+```bash
+将 `config.yml` 和 `device.json` 拷到 `go-cqhttp` 目录。
+(或运行 go-cq (Windows10： go-cqhttp_windows_amd64.exe，
+Linux: go-cqhttp) 生成 有效`config.yml` 和 `device.json`。
+参看目录里的config.sample.yml:
+注意第4行uin, 第5行的密码，第`102`行的port 8680
+```
+
 ```
 cd koyeb-nb2
 poetry shell
 python start_nb2.py
 ```
 
-NB: plugins 目录里的插件尚未完成迁移。 目前只有 `nb2chan` 可用.
+NB: plugins 目录里的插件尚未完成onebot迁移。 目前只有 `nb2chan` 可用.
 
 ## 部署到`koyeb`(使用github库）
 
-准备`github`库(密码保护的`config-device.zip`文件)
+准备`github`库(及密码保护的`config-device.zip`文件)
 ```bash
 git clone https://github.com/ffreemt/koyeb-nb2
 # 或 fork https://github.com/ffreemt/koyeb-nb2 再从自己的repo下载
 
 cd koyeb-nb2 && cd go-cqhttp
 
-# 将配置好的 config.yml 和 device.json 拷到当前目录或运行`go-cqhttp`生成有效`config.yml`和`device.json`
+# 将配置好的 config.yml 和 device.json
+# 拷到当前目录或运行`go-cqhttp`生成有效`config.yml`和`device.json`
+# 参看目录里的config.sample.yml:
+# 注意第4行uin, 第5行的密码，第`102`行的port 8680
 
+# 删掉库里的``config=device.zip``
+
+# 另外生成密码保护的``config=device.zip``
 set PW4UNZIP=选定密码
 zip -P %PW4UNZIP% config-device.zip config.yml device.json
 
-# 或 export PW4UNZIP=选定密码
+# 或`linux`里: export PW4UNZIP=选定密码
 # zip -P $PW4UNZIP config-device.zip config.yml device.json
 
 # 删掉 `config.yml`和`device.json` 或 .gitignore 里设置
@@ -58,7 +71,7 @@ Type            Key         Value
 Plaintext       PW4UNZIP    前面set PW4UNZIP的选定密码
 
 Ports
-8580
+8680
 
 选定service name
 

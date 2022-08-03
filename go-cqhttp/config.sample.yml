@@ -1,8 +1,8 @@
 # go-cqhttp 默认配置文件
 
 account: # 账号相关
-  uin: 1233456 # QQ账号
-  password: '' # 密码为空时使用扫码登录
+  uin: 12345 # QQ账号
+  password: 'xyz' # 密码为空时使用扫码登录
   encrypt: false  # 是否开启密码加密
   status: 0      # 在线状态 请参考 https://docs.go-cqhttp.org/guide/config.html#在线状态
   relogin: # 重连设置
@@ -77,7 +77,8 @@ database: # 数据库相关设置
     # 是否启用内置leveldb数据库
     # 启用将会增加10-20MB的内存占用和一定的磁盘空间
     # 关闭将无法使用 撤回 回复 get_msg 等上下文相关功能
-    enable: true
+    # enable: true
+    enable: false
 
   # 媒体文件缓存， 删除此项则使用缓存文件(旧版行为)
   cache:
@@ -95,7 +96,10 @@ servers:
   - ws-reverse:
       # 反向WS Universal 地址
       # 注意 设置了此项地址后下面两项将会被忽略
-      universal: ws://your_websocket_universal.server
+      # universal: ws://your_websocket_universal.server
+      # reverse_url: ws://127.0.0.1:8680/cqhttp/ws
+      # universal: ws://127.0.0.1:80/onebot/v11/ws
+      universal: ws://127.0.0.1:8680/onebot/v11/ws
       # 反向WS API 地址
       api: ws://your_websocket_api.server
       # 反向WS Event 地址
