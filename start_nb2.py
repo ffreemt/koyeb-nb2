@@ -4,7 +4,8 @@ import subprocess as sp
 import time
 from multiprocessing import Process
 from shlex import split
-from time import sleep
+
+# from time import sleep
 
 from logzero import logger
 
@@ -56,7 +57,7 @@ def main():
     except Exception as exc:
         logger.error(exc)
     finally:
-       gocq.kill()  # not really necessary
+        gocq.kill()  # not really necessary
 
     # will not come to this
     logger.info("end")
