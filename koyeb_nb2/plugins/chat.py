@@ -2,16 +2,19 @@
 # pylint: disable=invalid-name
 # import pdir
 from random import choice
+import re
 import jsonpath_ng
 import logzero
 from logzero import logger
 from fastlid import fastlid
 
 import nonebot
+from nonebot.typing import T_State
 
 # from nonebot import on_message
 # from nonebot import on_command
-from nonebot.adapters.cqhttp import Bot, Event
+# from nonebot.adapters.cqhttp import Bot, Event
+from nonebot.adapters.onebot.v11 import Bot, Event
 
 # from nonebot.log import logger
 
@@ -19,16 +22,15 @@ from nonebot.adapters.cqhttp import Bot, Event
 # from koyeb_nb2.fetch_qinyunke import fetch_qinyunke
 from koyeb_nb2.bot_response import bot_response
 
-logzero.loglevel(10)
-
 # test = on_message()
 # test = nonebot.on_command("chat", aliases={"xianliao", "闲聊"}, priority=5,)
 
-on_message = nonebot.on_message(priority=5, block=False)
+# on_message = nonebot.on_message(priority=5, block=False)
 
 
-@on_message.handle()
-async def handle(bot: Bot, event: Event, state: dict):
+# @on_message.handle()
+@nonebot.on_message(priority=5, block=False).handle()
+async def handle(bot: Bot, event: Event, state: T_State = State()):
     """Handle messages.
 
     # logic for checking consecutive empty resp
@@ -113,9 +115,14 @@ async def handle(bot: Bot, event: Event, state: dict):
 
     # detect language
     lang = fastlid(msg)
+    # safeguard short Chinese phrases
+    if len(msg) <= 10 and re.search(r"[一-龟]+", msg):
+        lang = "zh", .5
+        logger.debug(" safeguard branch ")
+
     if lang[0] not in ["en", "zh", "fr", "de"]:
         try:
-            await bot.send(message=f"I detect you are talking in [{lang}], which I currently am unable to understand. (I am able to chat in Chinese, English, German and French.)", event=event)
+            await bot.send(message=f"I detect you are talking in [{lang}], which I currently am unable to understand. (I am able to chat in Chinese, English, German and French -- 我只会一点点中、英、德、法啊，大佬.)", event=event)
         except Exception as e:
             logger.error(e)
 

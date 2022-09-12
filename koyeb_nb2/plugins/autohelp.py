@@ -1,12 +1,11 @@
 """Autogenerate response to commands /help !help help.
+/help details: also print __doc__
 
 For more info on usage:
 /help -h
 """
-# pylint: disable=invalid-name
+# pylint: disable=invalid-name, too-many-statements, no-name-in-module, too-many-locals
 # import asyncio
-from typing import Optional
-from nonebot.typing import T_State
 
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 
@@ -16,17 +15,25 @@ import logzero
 from logzero import logger
 
 import nonebot
-from nonebot.adapters.cqhttp import Bot, Event
+from nonebot.typing import T_State
+from nonebot.params import State
+
+# from nonebot.adapters.cqhttp import Bot, Event
+from nonebot.adapters.onebot.v11 import Bot, Event
 
 from koyeb_nb2.parse_cmd import parse_cmd
 from koyeb_nb2.fetch_plugin_info import fetch_plugin_info
 
-# for ratelimit, will not respond twice within 30 seconds
-_vars = dict(last_sent=0.0, interval=30)
+# for ratelimit, will not respond twice within 3 seconds
+_vars = dict(last_sent=0.0, interval=3)
 patt = re.compile(r"^[/!#]?\s*(?:help|menu|帮助|菜单|caidan|info)|[/#]i", re.I)
 
+# logzero.loglevel(20) to disable noisy debug messages
 logzero.loglevel(10)
-on_message = nonebot.on_message(priority=10, block=False)
+
+# on_message = nonebot.on_message(priority=1)
+nonebot_plugin_autohelp = nonebot.on_message(priority=1, block=False)
+
 config = nonebot.Config()
 
 # nonebot.load_from_toml("pyproject.toml")
@@ -46,8 +53,9 @@ logger.info("Loaded plugins: %s", [elm.name for elm in nonebot.get_loaded_plugin
 # func doc: elm.module.handle.__doc__
 
 
-@on_message.handle()
-async def handle(bot: Bot, event: Event, state: Optional[T_State]):
+@nonebot_plugin_autohelp.handle()
+# async def handle(bot: Bot, event: Event, state: dict):
+async def handle(bot: Bot, event: Event, state: T_State = State()):
     """Handle messages."""
     logger.debug(" nonebot_plugin_autohelp entry ")
     logger.debug("state: %s", state)
@@ -66,14 +74,17 @@ async def handle(bot: Bot, event: Event, state: Optional[T_State]):
         logger.debug("patt.findall(msg) False, return...")
         return
 
-    parser = ArgumentParser(prog="help", formatter_class=ArgumentDefaultsHelpFormatter,)
+    parser = ArgumentParser(
+        prog="help",
+        formatter_class=ArgumentDefaultsHelpFormatter,
+    )
     parser.add_argument(
         "-d", "--details", action="store_true", help="show __doc__ for each plugin"
     )
     parser.add_argument("params", nargs="*", help="list of parameters of type str")
 
     command = str(event.get_message()).strip()
-    logger.debug("command (str(event.get_message()).strip()): %s", command)
+    logger.debug("command (str(event.message).strip()): %s", command)
 
     args, stdout, stderr = parse_cmd(command, parser)
     logger.debug("args: %s", args)
@@ -95,9 +106,7 @@ async def handle(bot: Bot, event: Event, state: Optional[T_State]):
     logger.debug("args: %s", args)
 
     # args.params contains "details" or "detail" or "详细"
-    det = False
-    if args is not None:
-        det = any(map(lambda x: x in args.params, ["details", "detail", "详细"]))
+    det = any(map(lambda x: x in args.params, ["details", "detail", "详细"]))
 
     try:
         args_details = args.details
@@ -124,7 +133,10 @@ async def handle(bot: Bot, event: Event, state: Optional[T_State]):
             logger.error("fetch_plugin_info() exc: %s", e)
             plugin_info = str(e)
         try:
-            await bot.send(message=f"{info}\n{plugin_info}", event=event)
+            await bot.send(
+                message=f"{info}\n{plugin_info}\n(help -d will display detailed docs for all plugins loaded before nonebot_plugin_autohelp)",
+                event=event,
+            )
 
             # reset timer if sent successfully
             _vars["last_sent"] = time()

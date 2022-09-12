@@ -1,4 +1,6 @@
 """Parse command according to a given argparse.ArgumentParser."""
+# pylint: disable=invalid-name
+
 from typing import Tuple
 
 from argparse import ArgumentParser, Namespace, ArgumentDefaultsHelpFormatter
@@ -32,6 +34,7 @@ def parse_cmd(
     # capture stderr
     stderr = StringIO()
     stdout = StringIO()
+    # args: Optional[Namespace] = None
     args = parser.parse_args([])
     with redirect_stderr(stderr), redirect_stdout(stdout):
         # catch SystemExit
@@ -40,10 +43,8 @@ def parse_cmd(
             args = parser.parse_args(shlex.split(command)[1:])
         except SystemExit:
             logger.error("SystemExit caught.")
-            # args = parser.parse_args([])
         except BaseException as e:
             logger.error(e)
-            # args = parser.parse_args([])
     if stderr.getvalue():
         logger.error(stderr.getvalue())
 

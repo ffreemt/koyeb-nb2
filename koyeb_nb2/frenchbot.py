@@ -47,10 +47,15 @@ def frenchbot(sent: str) -> str:
         raise
 
     try:
-        return patt.sub(r"\1", kernel.respond(sent))
+        resp patt.sub(r"\1", kernel.respond(sent))
     except Exception as e:
         logger.error("frenchbot kernel.respond exc: %s", e)
         raise
+
+    if not resp.strip():
+        raise Exception("Empty response!")
+
+    return resp
 
 
 if __name__ == "__main__":

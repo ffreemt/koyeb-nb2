@@ -22,6 +22,9 @@ setuptools = "^63.2.0"
 wheel = "^0.37.1"
 readability-lxml = "^0.8.1"
 nb-cli = "^0.6.7"
+nonebot-plugin-guess = "^0.1.7"
+nonebot-plugin-autohelp = "^0.1.5"
+fastlid = "^0.1.7"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.2"

@@ -10,7 +10,7 @@ import logzero
 from logzero import logger
 from aiml import Kernel
 
-logzero.loglevel(10)
+# logzero.loglevel(10)
 kernel = Kernel()
 
 aimldir = Path(__file__).parent / "aiml-std-de"
@@ -26,10 +26,10 @@ else:
 
 kernel.setBotPredicate("master", "Internet")
 kernel.setBotPredicate("botmaster", "ishmael")
-kernel.setBotPredicate("location", "France")
+kernel.setBotPredicate("location", "Germany")
 kernel.setBotPredicate("birthday", "a Friday")
 kernel.setBotPredicate("birthplace", "net")
-kernel.setBotPredicate("it", "a French project")
+kernel.setBotPredicate("it", "a German project")
 kernel.setBotPredicate("gender", "female")
 kernel.setBotPredicate("favoritecolor", "bleu")
 
@@ -55,10 +55,15 @@ def germanbot(sent: str) -> str:
         raise
 
     try:
-        return patt.sub(r"\1", kernel.respond(sent))
+        resp = patt.sub(r"\1", kernel.respond(sent))
     except Exception as e:
         logger.error("germanbot kernel.respond exc: %s", e)
         raise
+
+    if not resp.strip():
+        raise Exception("Empty response!")
+
+    return resp
 
 
 if __name__ == "__main__":

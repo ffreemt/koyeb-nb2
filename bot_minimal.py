@@ -1,3 +1,5 @@
+"""Bootstrap."""
+# pylint: disable=invalid-name, unused-import, missing-function-docstring
 import platform
 
 import nonebot
@@ -14,11 +16,21 @@ from nonebot.params import Command, CommandArg, RawCommand
 from nonebot.plugin import on_command
 from nonebot.rule import to_me
 
-# from koyeb_nb2.nb2chan import nb2chan
-
 port = 8680  # .env.dev
 nonebot.init(port=port)
 nonebot.get_driver().register_adapter(Adapter)
+
+# fmt: off
+
+# load after nonebot.init()
+from koyeb_nb2.nb2chan import nb2chan  # noqa: E402  # pylint: disable=wrong-import-position, wrong-import-order  # isort: skip
+from nonebot_plugin_guess import guess  # noqa: E402  # pylint: disable=wrong-import-position, wrong-import-order  # isort: skip
+
+# load after all other plugins
+from nonebot_plugin_autohelp import nonebot_plugin_autohelp  # noqa: E402  # pylint: disable=wrong-import-position, wrong-import-order  # isort: skip
+
+# fmt: on
+
 
 _ = platform.node()
 if len(_) > 10:
@@ -68,8 +80,15 @@ async def handle(message: Message = CommandArg()):
         logger.error(e)
 
 
-nonebot.load_plugin("koyeb_nb2.plugins.nb2chan")
+ping = on_command("p")
 
+
+@ping.handle()
+async def handle_ping(message=CommandArg()):
+    await ping.send(message=f"pong: {message}")
+
+
+# nonebot.load_plugin("koyeb_nb2.plugins.nb2chan")
 # nonebot.load_plugin("koyeb_nb2.plugins.autohelp")
 
 app = nonebot.get_asgi()

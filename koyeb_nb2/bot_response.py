@@ -1,10 +1,13 @@
 """Get not response."""
 # pylint: disable=invalid-name
+import time
 from fastlid import fastlid
 import logzero
 from logzero import logger
 from koyeb_nb2.fetch_convbot import fetch_convbot
 from koyeb_nb2.fetch_qinyunke import fetch_qinyunke
+
+time.clock = time.perf_counter  # monkey patch for aiml lib
 from koyeb_nb2.frenchbot import frenchbot
 from koyeb_nb2.germanbot import germanbot
 
@@ -48,8 +51,9 @@ async def bot_response(text: str, lang: str = None) -> str:
             raise
     else:
         try:
-            resp = await fetch_convbot(text, bot_response.convbot_prev_resp)
-            bot_response.convbot_prev_resp = resp
+            # resp = await fetch_convbot(text, bot_response.convbot_prev_resp)
+            # bot_response.convbot_prev_resp = resp
+            resp = await fetch_convbot(text)
         except Exception as e:
             logger.error("fetch_convbot exc: %s", e)
             raise

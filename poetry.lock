@@ -177,6 +177,31 @@ doc = ["mkdocs (>=1.1.2,<2.0.0)", "mkdocs-material (>=8.1.4,<9.0.0)", "mdx-inclu
 test = ["pytest (>=6.2.4,<7.0.0)", "pytest-cov (>=2.12.0,<4.0.0)", "mypy (==0.910)", "flake8 (>=3.8.3,<4.0.0)", "black (==22.3.0)", "isort (>=5.0.6,<6.0.0)", "requests (>=2.24.0,<3.0.0)", "httpx (>=0.14.0,<0.19.0)", "email_validator (>=1.1.1,<2.0.0)", "sqlalchemy (>=1.3.18,<1.5.0)", "peewee (>=3.13.3,<4.0.0)", "databases[sqlite] (>=0.3.2,<0.6.0)", "orjson (>=3.2.1,<4.0.0)", "ujson (>=4.0.1,!=4.0.2,!=4.1.0,!=4.2.0,!=4.3.0,!=5.0.0,!=5.1.0,<6.0.0)", "python-multipart (>=0.0.5,<0.0.6)", "flask (>=1.1.2,<3.0.0)", "anyio[trio] (>=3.2.1,<4.0.0)", "types-ujson (==4.2.1)", "types-orjson (==3.6.2)", "types-dataclasses (==0.6.5)"]
 
 [[package]]
+name = "fastlid"
+version = "0.1.7"
+description = "Detect languages via a fasttext model"
+category = "main"
+optional = false
+python-versions = ">=3.6,<4.0"
+
+[package.dependencies]
+fasttext = ">=0.9.2,<0.10.0"
+logzero = ">=1.7.0,<2.0.0"
+numpy = ">=1.20.3,<2.0.0"
+
+[[package]]
+name = "fasttext"
+version = "0.9.2"
+description = "fasttext Python bindings"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+numpy = "*"
+pybind11 = ">=2.2"
+
+[[package]]
 name = "h11"
 version = "0.12.0"
 description = "A pure-Python, bring-your-own-I/O implementation of HTTP/1.1"
@@ -404,6 +429,36 @@ msgpack = ">=1.0.3,<2.0.0"
 nonebot2 = ">=2.0.0-beta.3,<3.0.0"
 
 [[package]]
+name = "nonebot-plugin-autohelp"
+version = "0.1.6"
+description = "nonebot2 plugin 自动生成载入插件的帮助信息，响应 /help !help help 菜单 caidan /i"
+category = "main"
+optional = false
+python-versions = ">=3.7.3,<4.0.0"
+
+[package.dependencies]
+logzero = ">=1.7.0,<2.0.0"
+nonebot-adapter-onebot = ">=2.0.0-beta.1,<3.0.0"
+nonebot2 = ">=2.0.0-alpha.16,<3.0.0"
+
+[[package]]
+name = "nonebot-plugin-guess"
+version = "0.1.8"
+description = "nobebot2插件《猜猜看》"
+category = "main"
+optional = false
+python-versions = ">=3.7.3,<4.0.0"
+
+[package.dependencies]
+joblib = ">=1.0.1,<2.0.0"
+logzero = ">=1.6.3,<2.0.0"
+nonebot-adapter-onebot = ">=2.0.0-beta.1,<3.0.0"
+nonebot2 = ">=2.0.0-beta.2,<3.0.0"
+pydantic = {version = ">=1.8.1,<2.0.0", extras = ["dotenv"]}
+pyquery = ">=1.4.3,<2.0.0"
+pytz = ">=2021.1,<2022.0"
+
+[[package]]
 name = "nonebot2"
 version = "2.0.0b4"
 description = "An asynchronous python bot framework."
@@ -427,6 +482,14 @@ all = ["Quart (>=0.17.0,<0.18.0)", "websockets (>=10.0,<11.0)", "aiohttp[speedup
 websockets = ["websockets (>=10.0,<11.0)"]
 aiohttp = ["aiohttp[speedups] (>=3.7.4,<4.0.0)"]
 httpx = ["httpx[http2] (>=0.20.0,<1.0.0)"]
+
+[[package]]
+name = "numpy"
+version = "1.23.1"
+description = "NumPy is the fundamental package for array computing with Python."
+category = "main"
+optional = false
+python-versions = ">=3.8"
 
 [[package]]
 name = "packaging"
@@ -497,6 +560,17 @@ description = "library with cross-python path, ini-parsing, io, code, log facili
 category = "dev"
 optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
+
+[[package]]
+name = "pybind11"
+version = "2.10.0"
+description = "Seamless operability between C++11 and Python"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+global = ["pybind11-global (==2.10.0)"]
 
 [[package]]
 name = "pydantic"
@@ -601,7 +675,7 @@ six = ">=1.5"
 
 [[package]]
 name = "python-dotenv"
-version = "0.20.0"
+version = "0.19.2"
 description = "Read key-value pairs from a .env file and set them as environment variables"
 category = "main"
 optional = false
@@ -623,6 +697,14 @@ text-unidecode = ">=1.3"
 
 [package.extras]
 unidecode = ["Unidecode (>=1.1.1)"]
+
+[[package]]
+name = "pytz"
+version = "2021.3"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
 
 [[package]]
 name = "pytzdata"
@@ -864,7 +946,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "d79f7aa9d1e0cd9c9f5b586ceed6fe70ce7b4953e7cf2c4aa199ae10b63ac6e2"
+content-hash = "0a77296f85eb2c1f270bf74fc972330ae4404ce4c5c83f28499870af62a5a471"
 
 [metadata.files]
 aiml = []
@@ -883,6 +965,8 @@ cookiecutter = []
 cssselect = []
 decorator = []
 fastapi = []
+fastlid = []
+fasttext = []
 h11 = []
 html2text = []
 httpcore = []
@@ -902,7 +986,10 @@ msgpack = []
 multidict = []
 nb-cli = []
 nonebot-adapter-onebot = []
+nonebot-plugin-autohelp = []
+nonebot-plugin-guess = []
 nonebot2 = []
+numpy = []
 packaging = []
 pendulum = []
 pluggy = []
@@ -910,6 +997,7 @@ ply = []
 poyo = []
 prompt-toolkit = []
 py = []
+pybind11 = []
 pydantic = []
 pyfiglet = []
 pygtrie = []
@@ -920,6 +1008,7 @@ pytest-asyncio = []
 python-dateutil = []
 python-dotenv = []
 python-slugify = []
+pytz = []
 pytzdata = []
 pyyaml = []
 readability-lxml = []
