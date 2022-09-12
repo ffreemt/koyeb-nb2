@@ -6,7 +6,18 @@ Nonebot2 up and running with ease
 <!--Dockerfile.gocqhttp-nb2 for go-cqhttp-940fix5 and nonebot2-->
 ([中文](https://github.com/ffreemt/koyeb-nb2/blob/master/dumbot.md))
 
-## Setup
+## Oneclick start
+- Authenticate when necessary
+
+    `cd go-cqhttp` && `go-cqhttp`
+
+    or copy valid `config.yml` `session.token` `session.token` to the `go-cqhttp` directory.
+- Run `start_nb.py` in  the `koyeb-nb2` directory
+    ```python
+    python start_nb2.py
+    ```
+
+## Setup for plugin dev
 
 ### Clone/fork this repo
 
@@ -18,7 +29,7 @@ git clone https://github.com/ffreemt/koyeb-nb2
 ### Authenticate
 In `go-cqhttp-940fix5`, run `go-cqhttp` and ready `config.hjson`/` device.json`
 
-换到`go-cqhttp-940fix5`目录里。运行`go-cqhttp` 生成config.hjson。编辑`config.hjson`填上机器人的qq号和密码，参考config.hjson- 修改reverse_url 及设置端口（8680）。再次运行 `go-cqhttp` 完成验证生成 `device.json`
+换到`go-cqhttp`目录里。运行`go-cqhttp` 生成config.hjson。编辑`config.hjson`填上机器人的qq号和密码，参考config.hjson- 修改reverse_url 及设置端口（8680）。再次运行 `go-cqhttp` 完成验证生成 `device.json`
 
 ## Three ways to use it
 
