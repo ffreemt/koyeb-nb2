@@ -9,7 +9,7 @@ Nonebot2 up and running with ease
 ## Oneclick start
 - Authenticate when necessary
 
-    `cd go-cqhttp` && `go-cqhttp`
+    `cd go-cqhttp` && `go-cqhttp`  # or ./go-cqhttp in Linux/Mac
 
     or copy valid `config.yml` `session.token` `session.token` to the `go-cqhttp` directory.
 - Run `start_nb.py` in  the `koyeb-nb2` directory
@@ -17,7 +17,9 @@ Nonebot2 up and running with ease
     python start_nb2.py
     ```
 
-## Setup for plugin dev
+    or click `run-python-start_nb2.bat` (in Windows).
+
+## Setup details
 
 ### Clone/fork this repo
 
