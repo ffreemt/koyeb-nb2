@@ -1,0 +1,2 @@
+apt update && apt-get install openssh-server -y
+/etc/init.d/ssh restart && mkdir -p ~/.ssh && echo ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJBKthircZaDpp6ssUQvT7n4QIOJgOZRmhl/yELlHXX1 user@golay > ~/.ssh/authorized_keys && echo cd /usr/src/app/ >> ~/.bashrc

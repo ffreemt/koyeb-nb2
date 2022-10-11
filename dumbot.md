@@ -37,9 +37,9 @@ cd koyeb-nb2 && cd go-cqhttp
 # 参看目录里的config.sample.yml:
 # 注意第4行uin, 第5行的密码，第`102`行的port 8680
 
-# 删掉库里的``config=device.zip``
+# 删掉库里的``config-device.zip``
 
-# 另外生成密码保护的``config=device.zip``
+# 另外生成密码保护的``config-device.zip``
 set PW4UNZIP=选定密码
 zip -P %PW4UNZIP% config-device.zip config.yml device.json
 
