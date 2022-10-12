@@ -28,7 +28,7 @@ from koyeb_nb2.nb2chan import nb2chan  # noqa: E402  # pylint: disable=wrong-imp
 # from nonebot_plugin_guess import guess  # noqa: E402  # pylint: disable=wrong-import-position, wrong-import-order  # isort: skip
 
 # load after all other plugins
-from nonebot_plugin_autohelp import nonebot_plugin_autohelp  # noqa: E402  # pylint: disable=wrong-import-position, wrong-import-order  # isort: skip
+# from nonebot_plugin_autohelp import nonebot_plugin_autohelp  # noqa: E402  # pylint: disable=wrong-import-position, wrong-import-order  # isort: skip
 
 # fmt: on
 
