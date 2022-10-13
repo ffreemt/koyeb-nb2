@@ -118,6 +118,9 @@ Start Command: ``poetry run python start_nb2.py``
     点击Save
 点击蓝色`Create Web Service`启动。 等待……检查日志
 
+---
+以下内容尚待更新
+
 ## 部署到 okteto
 ```bash
 git clone https://github.com/ffreemt/koyeb-nb2
