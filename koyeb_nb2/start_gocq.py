@@ -90,10 +90,10 @@ def start_gocq(wd: str = "go-cqhttp"):
         while proc.poll() is None:
             if proc.stderr is not None:
                 err = proc.stderr.read()
+                # logger.error(err.decode("utf8"))
+                logger.error(err)
             else:
                 continue
-            # logger.error(err.decode("utf8"))
-            logger.error(err)
 
     if proc.returncode != 0:
         raise sp.CalledProcessError(proc.returncode, proc.args)
