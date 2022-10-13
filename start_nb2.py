@@ -45,13 +45,13 @@ def main():
                 if proc.stderr is not None:
                     # out = proc.stdout.read()
                     out = proc.stderr.read()
+                    # logger.error(err.decode("utf8"))
+                    # logger.error(err)
+                    logger.error(out)
+                    # sleep(.1)
                 else:
                     continue
 
-                # logger.error(err.decode("utf8"))
-                # logger.error(err)
-                logger.error(out)
-                # sleep(.1)
         if proc.returncode != 0:
             raise sp.CalledProcessError(proc.returncode, proc.args)
     except Exception as exc:
