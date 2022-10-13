@@ -112,6 +112,10 @@ Start Command: ``poetry run python start_nb2.py``
     拷入 device.json 内容
     点击Save
 
+点击`Add Secret File`
+    File Name: session.token
+    拷入 session.token 内容
+    点击Save
 点击蓝色`Create Web Service`启动。 等待……检查日志
 
 ## 部署到 okteto
