@@ -1,1 +1,1 @@
-python start_nb2.py
+web: python start_nb2.py
