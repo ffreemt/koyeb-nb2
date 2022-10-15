@@ -23,7 +23,7 @@ wheel = "^0.37.1"
 readability-lxml = "^0.8.1"
 nb-cli = "^0.6.7"
 nonebot-plugin-guess = "^0.1.7"
-nonebot-plugin-autohelp = "^0.1.5"
+nonebot-plugin-autohelp = "^0.1.7"
 fastlid = "^0.1.8"
 # fasttext = {path = "whl/fasttext-0.9.2-cp38-cp38-win_amd64.whl"}
 fasttext = "^0.9.2"
