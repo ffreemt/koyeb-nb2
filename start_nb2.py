@@ -47,8 +47,15 @@ def main():
                     out = proc.stderr.read()
                     # logger.error(err.decode("utf8"))
                     # logger.error(err)
-                    logger.error(out)
                     # sleep(.1)
+                    
+                    # only print nonempty
+                    try:
+                        out_ = out.strip()
+                    except Exception as exc:
+                        out_ = str(exc)
+                    if out_:
+                        logger.error(out_)   
                 else:
                     continue
 
